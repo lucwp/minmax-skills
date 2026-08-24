@@ -1,20 +1,10 @@
-# Contributing to public-skills
+# Contributing to MinMax Skills
 
 This repository is a maintained catalog of reusable agent skills developed by Lucas W. Portella.
 
 ## Where a skill belongs
 
-Use exactly one primary category:
-
-- `orchestration-agents`: routing, planning, delegation, agent/model/context governance
-- `business-revenue`: strategy, partnerships, sales, revenue operations, account planning
-- `product-growth`: product strategy, discovery, retention, experimentation, growth systems
-- `marketing-content`: positioning, messaging, copywriting, content, demand generation
-- `design-ux`: UX, UI, visual systems, design QA
-- `operations-process`: SOPs, process design, service blueprints, operating systems
-- `data-analytics`: metrics, diagnostics, dashboards, analysis, reporting
-- `career`: career workflows, applications, interviews, professional positioning
-- `artifact-workflows`: reusable document, presentation, spreadsheet, and output workflows
+Use exactly one primary category: `orchestration-agents`, `business-revenue`, `product-growth`, `marketing-content`, `design-ux`, `operations-process`, `data-analytics`, `career`, or `artifact-workflows`.
 
 Do not duplicate one skill across categories. If classification is ambiguous, choose the category that best describes the skill's primary trigger and user outcome.
 
@@ -24,7 +14,8 @@ Active skill:
 
 ```text
 skills/<category>/<skill-name>/
-└── SKILL.md
+├── SKILL.md
+└── reliability.json
 ```
 
 Superseded skill:
@@ -34,47 +25,53 @@ skills/legacy/<category>/<skill-name>/
 └── SKILL.md
 ```
 
-Optional supporting directories:
+Optional supporting directories include `agents/`, `references/`, `assets/`, `scripts/`, and `tests/`.
 
-```text
-agents/       runtime metadata/configuration
-references/   progressive-loading instructions
-assets/       icons/static assets
-scripts/      deterministic helpers
+## Reliability contract
+
+Read `RELIABILITY.md` before publishing or materially changing an active skill.
+
+Every active skill must declare one reliability level in `reliability.json`: `experimental`, `consulting-ready`, or `production-ready`.
+
+`production-ready` is scoped to the declared `autonomous_envelope`; it is not a claim of unlimited autonomy. The manifest must account for source of truth, uncertainty handling, fail-closed behavior, deterministic validation, side-effect safety, idempotency, postcondition verification, rollback/compensation, untrusted-input boundaries, concurrency control, auditability, termination budgets, and regression tests. Use `not_applicable` only with a real reason tied to the autonomous envelope.
+
+Run before publishing:
+
+```bash
+python scripts/validate_reliability.py --repo-root . --run-tests
 ```
+
+CI runs the same gate. Do not weaken a validator, delete a regression test, or broaden an autonomous envelope merely to make CI pass.
 
 ## Replacement and legacy policy
 
-Distinguish an **incremental improvement** from a **complete replacement**.
+Distinguish an incremental improvement from a complete replacement.
 
-- **Incremental improvement:** the skill keeps the same identity, primary trigger, responsibility, and conceptual contract. Update it in place under `skills/<category>/`. Do not create a legacy copy for every normal revision.
-- **Complete replacement:** a new skill supersedes the old one as the active implementation, especially when its identity/name, architecture, primary contract, or intended runtime behavior materially changes. Move the replaced skill to `skills/legacy/<category>/<old-skill-name>/`, then publish the replacement only under `skills/<category>/<new-skill-name>/`.
-- Never keep both the superseded and replacement skill active when the replacement is intended to be canonical.
-- Legacy skills are historical snapshots. Do not update them after archival except to fix repository integrity or add clearly non-functional archival metadata.
-- Active category folders under `skills/` are the source of truth for what should be installed or used now. `skills/legacy/` exists only for history, rollback, and comparison.
-
-When uncertain, treat a change as a complete replacement only if keeping the previous skill active would create duplicate triggers, competing orchestration, or materially different behavior for the same user intent.
+- Incremental improvement: keep the same active skill and update it in place.
+- Complete replacement: move the superseded implementation to `skills/legacy/<category>/<old-skill-name>/`, then publish only the replacement as active.
+- Never keep both replacement and superseded skill active when they serve the same canonical intent.
+- Legacy skills are historical snapshots. Do not update them except for repository integrity or archival metadata.
+- Legacy skills are not certified by the current reliability contract.
 
 ## Publishing checklist
 
-Before pushing a new skill:
+Before pushing a new or materially changed active skill:
 
-1. `SKILL.md` exists and clearly states when the skill should be used.
-2. The skill has a narrow enough purpose to be reliably triggered.
-3. Supporting files are referenced with relative paths and remain self-contained.
-4. No credentials, tokens, `.env`, private keys, customer data, private transcripts, or proprietary company material are included.
-5. Third-party material is attributed when applicable.
-6. Large generated artifacts and dependency folders are excluded.
-7. The skill is placed under the correct primary category.
-8. If this is a complete replacement, the superseded skill has been moved to `skills/legacy/<category>/` and removed from its active category.
+1. `SKILL.md` exists and clearly states the trigger and responsibility.
+2. `reliability.json` exists and accurately scopes the reliability level and autonomous envelope.
+3. Every implemented reliability control points to real evidence files.
+4. Production-ready skills have executable regression tests for load-bearing guardrails.
+5. Deterministic rules are enforced in scripts when model judgment would be fragile.
+6. Autonomous writes, if any, have explicit side-effect, idempotency, postcondition, compensation, concurrency, audit, and blast-radius controls.
+7. Critical missing or contradictory state fails closed.
+8. Supporting files are self-contained and referenced with safe relative paths.
+9. No credentials, tokens, `.env`, private keys, customer data, private transcripts, or proprietary company material are included.
+10. Third-party material is attributed when applicable.
+11. Large generated artifacts and dependency folders are excluded.
+12. The skill is placed under the correct category.
+13. If this is a complete replacement, the superseded skill has moved to `skills/legacy/`.
+14. `python scripts/validate_reliability.py --repo-root . --run-tests` passes.
 
 ## README catalog
 
-Do not manually edit content between:
-
-```text
-<!-- SKILL_CATALOG:START -->
-<!-- SKILL_CATALOG:END -->
-```
-
-`scripts/update_readme.py` regenerates that section from active category paths shaped as `skills/<category>/<skill>/SKILL.md`. Because archived skills live one level deeper under `skills/legacy/<category>/<skill>/`, they are excluded from the active catalog.
+Do not manually edit content between `<!-- SKILL_CATALOG:START -->` and `<!-- SKILL_CATALOG:END -->`. `scripts/update_readme.py` regenerates that section from active skill paths. Legacy skills are excluded from the active catalog.
