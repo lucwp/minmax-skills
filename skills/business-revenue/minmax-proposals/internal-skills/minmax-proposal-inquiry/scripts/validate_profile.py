@@ -62,6 +62,15 @@ def validate(data):
     voice=data.get("voice") or {}
     for k in ("default_language","tone","claim_policy"):
         if not present(voice.get(k)):(errors if strict else warnings).append(f"voice.{k} is required for configured profiles")
+    proof=data.get("proof") or {}
+    if strict:
+        governed=False
+        for item in proof.get("metrics",[]) or []:
+            if item.get("confidence")=="verified" and present(item.get("source")):governed=True
+        for bucket in ("case_studies","testimonials","customer_logos"):
+            for item in proof.get(bucket,[]) or []:
+                if item.get("permission") in {"approved","restricted"}:governed=True
+        if not governed:errors.append("configured profiles require at least one verified/approved proof item")
     defaults=data.get("proposal_defaults") or {}
     for k in ("page_size","approval_mode","default_next_step"):
         if not present(defaults.get(k)):(errors if strict else warnings).append(f"proposal_defaults.{k} is required for configured profiles")
