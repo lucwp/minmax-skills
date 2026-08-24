@@ -8,29 +8,32 @@ Unless a specific skill explicitly states otherwise, the skills in this reposito
 
 ## Repository structure
 
-Skills are organized by **type first**, then by skill name:
+Active skills are organized by **type first**, then by skill name. Superseded skills that were fully replaced live outside the active catalog under `legacy/`.
 
 ```text
 public-skills/
 ├── skills/
 │   ├── orchestration-agents/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   ├── business-revenue/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   ├── product-growth/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   ├── marketing-content/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   ├── design-ux/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   ├── operations-process/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   ├── data-analytics/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   ├── career/
-│   │   └── <skill-name>/
+│   │   └── <active-skill-name>/
 │   └── artifact-workflows/
-│       └── <skill-name>/
+│       └── <active-skill-name>/
+├── legacy/
+│   └── <category>/
+│       └── <superseded-skill-name>/
 ├── scripts/
 │   └── update_readme.py
 └── .github/workflows/
@@ -55,7 +58,7 @@ A new category should only be created when an existing one would materially misc
 
 ## Skill contract
 
-Each skill should be self-contained under:
+Each active skill should be self-contained under:
 
 ```text
 skills/<category>/<skill-name>/
@@ -71,6 +74,12 @@ scripts/      deterministic helpers used by the skill
 ```
 
 Do not place credentials, `.env` files, private keys, customer data, or proprietary internal material in this public repository.
+
+## Replacements and legacy
+
+Normal improvements update the existing active skill in place. When one skill is a **complete replacement** for another, the replacement becomes the only active version under `skills/` and the superseded skill is archived under `legacy/<category>/<old-skill-name>/`.
+
+`legacy/` is historical only: it is excluded from the active skill catalog and should not be treated as the version to install. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the replacement criteria and maintenance rules.
 
 ## Automatic catalog
 
@@ -105,4 +114,4 @@ Copy the complete skill directory into the skills directory used by your agent r
 
 ## Contributing and maintenance
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the folder taxonomy and publishing checklist. The repository is intentionally structured so adding a skill requires minimal repository maintenance: place it in the correct category and push it; the catalog is maintained automatically.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the folder taxonomy, replacement/legacy policy, and publishing checklist. The active catalog is maintained automatically from `skills/` only.
