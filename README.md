@@ -81,13 +81,21 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 <!-- SKILL_CATALOG:START -->
 ## Skill catalog
 
-**1 public skill** across **1 category**.
+**4 public skills** across **2 categories**.
 
 ### Orchestration & Agents
 
 | Skill | What it does |
 | --- | --- |
 | [Low-Cost Intelligence Orchestrator](skills/orchestration-agents/low-cost-intelligence-orchestrator/) | Use this skill as a lightweight manager-style control plane. The root agent owns the user conversation, global objective, approvals, cross-workstream synthesis, and final claim. |
+
+### Business & Revenue
+
+| Skill | What it does |
+| --- | --- |
+| [Minmax Enterprise Proposal](skills/business-revenue/minmax-enterprise-proposal/) | Generate, revise, render, and QA high-quality B2B and enterprise proposals using the business configuration compiled into this worker by minmax-proposal-inquiry. Use when a conf... |
+| [MinMax Proposal Inquiry](skills/business-revenue/minmax-proposal-inquiry/) | Configure and update the MinMax enterprise proposal worker for a specific business. Use for first-time setup or whenever reusable proposal context changes, including offers, pos... |
+| [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate the MinMax proposal system across business onboarding/configuration and enterprise proposal generation. Use when a user wants to set up MinMax proposals for a busine... |
 
 <!-- SKILL_CATALOG:END -->
 
