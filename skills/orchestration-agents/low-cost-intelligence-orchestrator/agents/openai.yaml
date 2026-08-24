@@ -1,0 +1,12 @@
+interface:
+  display_name: Low-Cost Intelligence Orchestrator
+  short_description: Manager planning and delegation optimized for total token cost.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
