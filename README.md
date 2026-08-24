@@ -213,7 +213,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 
 | Skill | What it does |
 | --- | --- |
-| [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/) | Workspace-level manager/orchestrator for cost-effective planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial work direct; plan boun... |
+| [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/) | Workspace-level manager/orchestrator for cost-effective, production-minded planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial wor... |
 
 ### Business & Revenue
 
