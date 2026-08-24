@@ -24,6 +24,10 @@ def main() -> int:
     require(SKILL, "Do not use word blacklists", "anti-heuristic hardening")
     require(SKILL, "preservation as a hard gate", "semantic hard gate")
 
+    for ref in (ROOT / "references").glob("*.md"):
+        if "Better Portuguese" in ref.read_text(encoding="utf-8"):
+            raise AssertionError(f"legacy skill name remains in {ref.name}")
+
     for i in range(1, 21):
         require(REG, f"## R{i} -", f"regression case R{i}")
 

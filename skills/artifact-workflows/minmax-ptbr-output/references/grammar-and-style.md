@@ -1,7 +1,7 @@
 # Grammar and style
 
 This reference records the non-punctuation prescriptions from Napoleão Mendes
-de Almeida that inform Better Portuguese. It is a review framework, not a
+de Almeida that inform MinMax PT-BR Output. It is a review framework, not a
 license to reproduce every preference of a conservative twentieth-century
 grammar in contemporary PT-BR.
 

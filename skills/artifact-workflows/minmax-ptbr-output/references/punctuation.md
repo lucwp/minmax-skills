@@ -1,7 +1,7 @@
 # Punctuation
 
 This is the canonical reference for the punctuation prescriptions used by
-Better Portuguese. Agents use it when drafting and reviewing sentence-level
+MinMax PT-BR Output. Agents use it when drafting and reviewing sentence-level
 prose; contributors use the same reference when changing the editorial
 standard or its evals.
 
@@ -40,8 +40,8 @@ technical labels are retained where useful.
 
 Short examples are transcribed from the source so that each prescription can
 be understood in context. They document the rule; their subject matter,
-vocabulary, and cadence are not automatically recommendations for Better
-Portuguese.
+vocabulary, and cadence are not automatically recommendations for MinMax PT-BR
+Output.
 
 ## Punctuation as a system
 
@@ -539,7 +539,7 @@ Source examples:
 > In place of a colon: `Prestem atenção — Ninguém deve sair.`
 
 The source therefore recognizes legitimate grammatical uses of the dash.
-Whether Better Portuguese should avoid particular English-influenced or
+Whether MinMax PT-BR Output should avoid particular English-influenced or
 overused dash constructions is a separate editorial decision.
 
 ## Paragraph
