@@ -207,7 +207,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 <!-- SKILL_CATALOG:START -->
 ## Skill catalog
 
-**2 public skills** across **2 categories**.
+**3 public skills** across **3 categories**.
 
 ### Orchestration & Agents
 
@@ -220,6 +220,12 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 | Skill | What it does |
 | --- | --- |
 | [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate a complete enterprise proposal system inside one MinMax skill package. Use when a user wants to configure a business for reusable proposal generation, update offers/... |
+
+### Artifact Workflows
+
+| Skill | What it does |
+| --- | --- |
+| [MinMax PT-BR Output](skills/artifact-workflows/minmax-ptbr-output/) | Production-grade PT-BR output standard for writing, rewriting, translating, editing, or reviewing prose with native Brazilian syntax, natural register, semantic fidelity, factua... |
 
 <!-- SKILL_CATALOG:END -->
 
