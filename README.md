@@ -18,6 +18,59 @@ I am trying to build workflows I can trust in two very different situations: whe
 
 That second bar is much higher.
 
+## Start here
+
+Don't start by choosing a skill. Start by finding the **kind of work** you are trying to improve.
+
+MinMax is organized around business problems, not model families or arbitrary levels of complexity. Each category is a different path into the collection:
+
+| Path | Go here when... | Typical work |
+| --- | --- | --- |
+| **Orchestration & agents** `skills/orchestration-agents/` | The work itself is multi-step and you need to decide how an agent should plan, delegate, manage context, verify, escalate, and stop. | Agent architecture, model routing, delegation, context governance, verification, bounded autonomy. |
+| **Business & revenue** `skills/business-revenue/` | The problem lives somewhere between strategy and money: winning business, structuring offers, managing accounts, partnerships, sales, or revenue operations. | Enterprise proposals, account planning, partnerships, sales systems, commercial strategy, RevOps. |
+| **Product & growth** `skills/product-growth/` | You are deciding what to build, why users behave the way they do, or how a product should find, create, and compound growth. | Product strategy, discovery, PMF, retention, experimentation, prioritization, growth loops. |
+| **Marketing & content** `skills/marketing-content/` | You need to make a market understand, remember, trust, or act on something. | Positioning, messaging, GTM, campaigns, copy, content systems, demand generation. |
+| **Design & UX** `skills/design-ux/` | The quality of the interface, interaction, visual system, or user experience is part of the problem. | Product design, UX review, UI systems, visual direction, accessibility, design governance. |
+| **Operations & process** `skills/operations-process/` | The problem is how work moves through a company and who owns what along the way. | SOPs, process maps, service blueprints, operating rhythms, handoffs, management systems. |
+| **Data & analytics** `skills/data-analytics/` | A decision depends on metrics, evidence, diagnostics, or a quantitative model rather than narrative alone. | KPI design, metric diagnostics, dashboards, business analysis, forecasting, decision support. |
+| **Career** `skills/career/` | The workflow is about an individual career rather than a company operating problem. | Opportunity evaluation, CVs, applications, interview preparation, outreach, career operations. |
+| **Artifact workflows** `skills/artifact-workflows/` | The deliverable itself needs a production standard independent of the business domain that produced it. | Writing standards, reports, documents, presentations, spreadsheets, output QA and finalization. |
+
+These categories are **paths, not maturity levels**. A task may need one skill from one category or a composition across several. Start with the category that owns the primary problem; add another only when it contributes a distinct capability.
+
+The [skill catalog](#skill-catalog) below is the canonical list of what is currently available. This map exists to tell you **where to look**.
+
+## Skill catalog
+
+The catalog below is generated automatically from active skill paths shaped as `skills/<category>/<skill-name>/SKILL.md`.
+
+When a skill is added, removed, renamed, or updated on `main`, GitHub Actions runs `scripts/update_readme.py` and commits an updated catalog when necessary. **Do not manually edit the generated section.**
+
+<!-- SKILL_CATALOG:START -->
+## Skill catalog
+
+**3 public skills** across **3 categories**.
+
+### Orchestration & Agents
+
+| Skill | What it does |
+| --- | --- |
+| [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/) | Workspace-level manager/orchestrator for cost-effective, production-minded planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial wor... |
+
+### Business & Revenue
+
+| Skill | What it does |
+| --- | --- |
+| [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate a complete enterprise proposal system inside one MinMax skill package. Use when a user wants to configure a business for reusable proposal generation, update offers/... |
+
+### Artifact Workflows
+
+| Skill | What it does |
+| --- | --- |
+| [MinMax PT-BR Output](skills/artifact-workflows/minmax-ptbr-output/) | Production-grade PT-BR output standard for writing, rewriting, translating, editing, or reviewing prose with native Brazilian syntax, natural register, semantic fidelity, factua... |
+
+<!-- SKILL_CATALOG:END -->
+
 ## Why “MinMax”?
 
 In games, min-maxing means getting unreasonably deliberate about a build. You learn the system, cut what does not matter, stack what does, and keep tuning until the whole thing behaves the way you want.
@@ -37,6 +90,38 @@ It is also where someone eventually asks:
 **“Where did this fact come from?”**
 
 That is the part MinMax is built for.
+
+## The last 20%
+
+A lot of AI tooling is optimized around getting to a plausible first answer quickly. That is useful. It is just not what this repository is primarily about.
+
+MinMax starts where the happy path ends.
+
+If a workflow only needs three good instructions, it should stay three instructions. But when the work has real state, reusable business context, multiple sources of truth, fragile calculations, branching logic, external evidence, visual output, unattended execution, or meaningful failure modes, those things should be designed explicitly.
+
+That can mean going beyond prose:
+
+```text
+SKILL.md      routing and execution contract
+agents/       runtime metadata and agent configuration
+references/   business rules, evidence policies, and reusable context
+assets/       templates, icons, and production assets
+scripts/      validators, calculators, renderers, and deterministic helpers
+```
+
+The objective is not complexity.
+
+The objective is getting the workflow to the point where it becomes boringly dependable.
+
+## Business nerd first, AI nerd second
+
+MinMax is not a general collection of developer utilities.
+
+The center of gravity is high-level business work where the agent has to reason across messy context and still produce something useful: a recommendation, a proposal, a plan, an operating model, an analysis, a decision artifact, or a workflow that keeps running after the chat window closes.
+
+Typical use cases include structuring enterprise proposals, planning accounts and partnerships, diagnosing product or revenue problems, turning business context into reusable operating systems, creating executive-ready artifacts, and orchestrating multi-step agent workflows without wasting model capability or context.
+
+I care less about making an agent sound like an expert and more about making it operate like someone competent has already thought through the workflow, the failure modes, the sources of truth, and what happens when things go wrong.
 
 ## Consulting-grade, production-minded
 
@@ -63,16 +148,6 @@ For autonomous production use, the standard is stricter. The workflow needs enou
 
 Some tasks will never meet that bar, and that is fine. A good MinMax skill should know when it can continue, when it should ask, and when it should stop.
 
-## Business nerd first, AI nerd second
-
-MinMax is not a general collection of developer utilities.
-
-The center of gravity is high-level business work where the agent has to reason across messy context and still produce something useful: a recommendation, a proposal, a plan, an operating model, an analysis, a decision artifact, or a workflow that keeps running after the chat window closes.
-
-Typical use cases include structuring enterprise proposals, planning accounts and partnerships, diagnosing product or revenue problems, turning business context into reusable operating systems, creating executive-ready artifacts, and orchestrating multi-step agent workflows without wasting model capability or context.
-
-I care less about making an agent sound like an expert and more about making it operate like someone competent has already thought through the workflow, the failure modes, the sources of truth, and what happens when things go wrong.
-
 ## What makes a MinMax skill different
 
 These are not prompt snippets or “act as a world-class consultant” wrappers.
@@ -85,49 +160,11 @@ If something can be checked deterministically, I would rather check it than ask 
 
 I am not optimizing for the shortest `SKILL.md`. I am optimizing for the simplest system I would actually trust with the task.
 
-## Start here
+## Using a skill
 
-Don't start by choosing a skill. Start by finding the **kind of work** you are trying to improve.
+Copy the complete active skill directory into the skills directory used by your agent runtime, then follow the runtime-specific installation rules. Keep the full folder together: `SKILL.md` may progressively load supporting references, assets, or scripts during execution.
 
-MinMax is organized around business problems, not model families or arbitrary levels of complexity. Each category is a different path into the collection:
-
-| Path | Go here when... | Typical work |
-| --- | --- | --- |
-| **Orchestration & agents** `skills/orchestration-agents/` | The work itself is multi-step and you need to decide how an agent should plan, delegate, manage context, verify, escalate, and stop. | Agent architecture, model routing, delegation, context governance, verification, bounded autonomy. |
-| **Business & revenue** `skills/business-revenue/` | The problem lives somewhere between strategy and money: winning business, structuring offers, managing accounts, partnerships, sales, or revenue operations. | Enterprise proposals, account planning, partnerships, sales systems, commercial strategy, RevOps. |
-| **Product & growth** `skills/product-growth/` | You are deciding what to build, why users behave the way they do, or how a product should find, create, and compound growth. | Product strategy, discovery, PMF, retention, experimentation, prioritization, growth loops. |
-| **Marketing & content** `skills/marketing-content/` | You need to make a market understand, remember, trust, or act on something. | Positioning, messaging, GTM, campaigns, copy, content systems, demand generation. |
-| **Design & UX** `skills/design-ux/` | The quality of the interface, interaction, visual system, or user experience is part of the problem. | Product design, UX review, UI systems, visual direction, accessibility, design governance. |
-| **Operations & process** `skills/operations-process/` | The problem is how work moves through a company and who owns what along the way. | SOPs, process maps, service blueprints, operating rhythms, handoffs, management systems. |
-| **Data & analytics** `skills/data-analytics/` | A decision depends on metrics, evidence, diagnostics, or a quantitative model rather than narrative alone. | KPI design, metric diagnostics, dashboards, business analysis, forecasting, decision support. |
-| **Career** `skills/career/` | The workflow is about an individual career rather than a company operating problem. | Opportunity evaluation, CVs, applications, interview preparation, outreach, career operations. |
-| **Artifact workflows** `skills/artifact-workflows/` | The deliverable itself needs a production standard independent of the business domain that produced it. | Writing standards, reports, documents, presentations, spreadsheets, output QA and finalization. |
-
-These categories are **paths, not maturity levels**. A task may need one skill from one category or a composition across several. Start with the category that owns the primary problem; add another only when it contributes a distinct capability.
-
-The [skill catalog](#skill-catalog) below is the canonical list of what is currently available. This map exists to tell you **where to look**.
-
-## The last 20%
-
-A lot of AI tooling is optimized around getting to a plausible first answer quickly. That is useful. It is just not what this repository is primarily about.
-
-MinMax starts where the happy path ends.
-
-If a workflow only needs three good instructions, it should stay three instructions. But when the work has real state, reusable business context, multiple sources of truth, fragile calculations, branching logic, external evidence, visual output, unattended execution, or meaningful failure modes, those things should be designed explicitly.
-
-That can mean going beyond prose:
-
-```text
-SKILL.md      routing and execution contract
-agents/       runtime metadata and agent configuration
-references/   business rules, evidence policies, and reusable context
-assets/       templates, icons, and production assets
-scripts/      validators, calculators, renderers, and deterministic helpers
-```
-
-The objective is not complexity.
-
-The objective is getting the workflow to the point where it becomes boringly dependable.
+If you adapt a MinMax skill to another runtime, preserve the workflow contract, source-of-truth rules, and quality gates rather than copying only the top-level prompt.
 
 ## Repository structure
 
@@ -185,49 +222,12 @@ skills/legacy/<category>/<old-skill-name>/
 
 `skills/legacy/` is historical only. It is excluded from the active catalog and should not be treated as the version to install.
 
-## Skill catalog
+## Contributing and maintenance
 
-The catalog below is generated automatically from active skill paths shaped as `skills/<category>/<skill-name>/SKILL.md`.
-
-When a skill is added, removed, renamed, or updated on `main`, GitHub Actions runs `scripts/update_readme.py` and commits an updated catalog when necessary. **Do not manually edit the generated section.**
-
-<!-- SKILL_CATALOG:START -->
-## Skill catalog
-
-**3 public skills** across **3 categories**.
-
-### Orchestration & Agents
-
-| Skill | What it does |
-| --- | --- |
-| [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/) | Workspace-level manager/orchestrator for cost-effective, production-minded planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial wor... |
-
-### Business & Revenue
-
-| Skill | What it does |
-| --- | --- |
-| [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate a complete enterprise proposal system inside one MinMax skill package. Use when a user wants to configure a business for reusable proposal generation, update offers/... |
-
-### Artifact Workflows
-
-| Skill | What it does |
-| --- | --- |
-| [MinMax PT-BR Output](skills/artifact-workflows/minmax-ptbr-output/) | Production-grade PT-BR output standard for writing, rewriting, translating, editing, or reviewing prose with native Brazilian syntax, natural register, semantic fidelity, factua... |
-
-<!-- SKILL_CATALOG:END -->
-
-## Using a skill
-
-Copy the complete active skill directory into the skills directory used by your agent runtime, then follow the runtime-specific installation rules. Keep the full folder together: `SKILL.md` may progressively load supporting references, assets, or scripts during execution.
-
-If you adapt a MinMax skill to another runtime, preserve the workflow contract, source-of-truth rules, and quality gates rather than copying only the top-level prompt.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for folder taxonomy, replacement/legacy policy, and the publishing checklist. The active catalog indexes only canonical skills and ignores `skills/legacy/`.
 
 ## Authorship and attribution
 
 Unless a specific skill explicitly states otherwise, the work in this repository was authored by **Lucas W. Portella**.
 
 If a skill is adapted from third-party work, its source and attribution should be documented inside that skill. Public does not mean provenance-free.
-
-## Contributing and maintenance
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for folder taxonomy, replacement/legacy policy, and the publishing checklist. The active catalog indexes only canonical skills and ignores `skills/legacy/`.
