@@ -87,25 +87,17 @@ I am not optimizing for the shortest `SKILL.md`. I am optimizing for the simples
 
 ## Start here
 
-### [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/)
+There is no required order and no “base” MinMax skill. Pick the smallest skill that matches the problem you are actually trying to solve.
 
-The skill behind the name.
+| If you need to... | Start with | What it is for |
+| --- | --- | --- |
+| Decide how a complex agent workflow should plan, delegate, verify, and spend model capability | [**MinMax Orchestrator GPT**](skills/orchestration-agents/minmax-orchestrator-gpt/) | A lightweight control plane for multi-step work. Use it when orchestration genuinely reduces cost, risk, or context pressure. Do not wrap simple tasks in agents just because you can. |
+| Turn business context, pricing, proof, and deal specifics into a client-ready B2B proposal | [**MinMax Proposals**](skills/business-revenue/minmax-proposals/) | A reusable proposal system with explicit sources of truth, claim governance, commercial logic, rendering, and QA. |
+| Make final Brazilian Portuguese output precise, natural, and resistant to generic AI writing without changing what it means | [**MinMax PT-BR Output**](skills/artifact-workflows/minmax-ptbr-output/) | A production-grade editorial layer for writing, rewriting, translating, and reviewing PT-BR while preserving facts, modality, voice, and domain language. |
 
-A lightweight control plane for planning, delegation, model selection, context management, verification, and cost-aware agent execution.
+Most MinMax skills are designed to stand on their own. Combine them only when the workflow actually benefits from composition.
 
-It exists for the moment when the question stops being “can the model answer this?” and becomes “what is the safest and most efficient way to get this done without turning the workflow into agent spaghetti?”
-
-### [MinMax Proposals](skills/business-revenue/minmax-proposals/)
-
-A reusable proposal system for SMB and enterprise commercial work.
-
-It combines business onboarding, offer and pricing configuration, positioning, claim governance, brand rules, proposal strategy, HTML rendering, and QA in one workflow.
-
-The business is configured once. Facts, prices, proof, and commercial rules come from explicit sources of truth. Missing information stays missing until it is resolved. The proposal is validated before it is treated as client-ready.
-
-It is intentionally overbuilt compared with “write me a proposal.”
-
-That is the point.
+If none of these match what you need, jump to the [skill catalog](#skill-catalog). As the repository grows, that catalog is the canonical index of active skills.
 
 ## What you will find here
 
