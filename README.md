@@ -1,6 +1,6 @@
-# Lucas W. Portella — Public Skills
+Public Skills
 
-A public collection of agent skills developed and maintained by **Lucas W. Portella**.
+A public collection of agent skills developed and maintained by **me**.
 
 This repository is where I publish reusable skills I build for AI agents, ChatGPT, Codex, and compatible agentic runtimes. The focus is practical: orchestration, business systems, product and growth, revenue, operations, design, analytics, and artifact workflows that can be reused across projects.
 
