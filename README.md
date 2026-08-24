@@ -81,13 +81,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 <!-- SKILL_CATALOG:START -->
 ## Skill catalog
 
-**1 public skill** across **1 category**.
-
-### Orchestration & Agents
-
-| Skill | What it does |
-| --- | --- |
-| [Low-Cost Intelligence Orchestrator](skills/orchestration-agents/low-cost-intelligence-orchestrator/) | Manager-style routing, planning and delegation optimized for verified task success per total expected cost. |
+**0 public skills** across **0 categories**.
 
 <!-- SKILL_CATALOG:END -->
 
