@@ -1,0 +1,3 @@
+interface:
+  display_name: "MinMax Orchestrator GPT"
+  short_description: "Cost-effective planning and delegation manager for GPT workspaces."
