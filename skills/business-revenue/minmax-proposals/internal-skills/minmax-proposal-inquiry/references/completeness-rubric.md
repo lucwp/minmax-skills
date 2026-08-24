@@ -32,4 +32,4 @@ Critical domains are business identity, offer architecture, offer boundaries/dep
 
 This prevents three missing critical domains from being hidden by seven perfect domains.
 
-Autonomous proposal release still requires the profile validator to pass with `status: configured`; readiness scoring does not replace deterministic validation.
+Autonomous proposal release still requires deterministic configured-profile validation; readiness scoring does not replace it.

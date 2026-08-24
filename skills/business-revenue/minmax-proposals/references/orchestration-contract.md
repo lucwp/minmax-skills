@@ -13,13 +13,13 @@ The user must not install or invoke them separately.
 
 ## Internal Skill A: minmax-proposal-inquiry
 
-Own reusable configuration: business identity; offer architecture; positioning and buyer logic; pricing and commercial rules; evidence and claim permissions; brand assets and visual tokens; voice and proposal workflow defaults.
+Own reusable configuration: business identity, offer architecture, positioning and buyer logic, pricing and commercial rules, evidence and claim permissions, brand assets and visual tokens, voice and proposal workflow defaults.
 
 Its successful terminal state is an updated and validated internal Enterprise Proposal configuration.
 
 ## Internal Skill B: minmax-enterprise-proposal
 
-Own deal execution: deal brief; commercial thesis; recommendation; proposal narrative; scope architecture; investment presentation; structured proposal data; HTML rendering and QA.
+Own deal execution: deal brief, commercial thesis, recommendation, proposal narrative, scope architecture, investment presentation, structured proposal data, HTML rendering and QA.
 
 It must not redefine reusable business configuration during ordinary proposal work.
 

@@ -19,5 +19,8 @@
     "regression_tests": {"status": "implemented", "evidence": ["tests/test_reliability.py"]}
   },
   "tests": ["tests/test_reliability.py"],
-  "limitations": ["Autonomous client release requires a separate browser/PDF/screenshot visual QA mechanism; static HTML checks alone are not treated as proof of no overflow or clipping.","Sending, publishing, CRM updates, or other external writes are outside this skill's autonomous envelope."]
+  "limitations": [
+    "Autonomous client release requires a separate browser/PDF/screenshot visual QA mechanism; static HTML checks alone are not treated as proof of no overflow or clipping.",
+    "Sending, publishing, CRM updates, or other external writes are outside this skill's autonomous envelope."
+  ]
 }

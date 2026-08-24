@@ -14,15 +14,17 @@ def run_checks(text,proposal,visual_report=None):
         if not isinstance(visual_report,dict):e.append("autonomous release requires a visual QA report")
         else:
             if visual_report.get("status")!="PASS":e.append("visual QA status must be PASS")
-            if visual_report.get("method") not in VISUAL:e.append("visual QA method invalid")
+            if visual_report.get("method") not in VISUAL:e.append("visual QA method is invalid")
             if visual_report.get("overflow") is not False:e.append("visual QA must explicitly report overflow=false")
             if visual_report.get("clipping") is not False:e.append("visual QA must explicitly report clipping=false")
             missing=visual_report.get("missing_assets")
-            if not isinstance(missing,list) or missing:e.append("visual QA must report no missing assets")
+            if not isinstance(missing,list) or missing:e.append("visual QA must report missing_assets as an empty array")
     return e,w
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument("html");ap.add_argument("proposal");ap.add_argument("--visual-qa-report");a=ap.parse_args();text=Path(a.html).read_text();proposal=json.loads(Path(a.proposal).read_text());visual=json.loads(Path(a.visual_qa_report).read_text()) if a.visual_qa_report else None;e,w=run_checks(text,proposal,visual)
+    ap=argparse.ArgumentParser();ap.add_argument("html");ap.add_argument("proposal");ap.add_argument("--visual-qa-report");a=ap.parse_args();text=Path(a.html).read_text(encoding="utf-8");proposal=json.loads(Path(a.proposal).read_text(encoding="utf-8"));visual=json.loads(Path(a.visual_qa_report).read_text(encoding="utf-8")) if a.visual_qa_report else None;e,w=run_checks(text,proposal,visual)
     for x in w:print(f"WARN: {x}")
-    for x in e:print(f"FAIL: {x}")
-    print(f"RESULT: {'FAIL' if e else 'PASS'} ({len(e)} errors, {len(w)} warnings)");return 1 if e else 0
+    if e:
+        for x in e:print(f"FAIL: {x}")
+        print(f"RESULT: FAIL ({len(e)} errors, {len(w)} warnings)");return 1
+    print(f"RESULT: PASS ({len(w)} warnings)");return 0
 if __name__=="__main__":raise SystemExit(main())

@@ -1,10 +1,6 @@
 # Claim and evidence policy
 
-## Evidence classes
-
-Treat claims as one of: verified provider fact, verified client fact, approved proof, third-party evidence, internal estimate, or assumption.
-
-## Rules
+Treat claims as verified provider facts, verified client facts, approved proof, third-party evidence, internal estimates, or assumptions.
 
 - Never upgrade an assumption to a fact because it sounds plausible.
 - Never turn a historical case-study result into a guaranteed future outcome.

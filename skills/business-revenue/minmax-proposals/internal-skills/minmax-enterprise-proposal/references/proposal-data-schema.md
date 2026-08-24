@@ -10,15 +10,15 @@ Every page requires `type`, `section`, and `title`. Commercial pages require inv
 
 Autonomous release also requires:
 
-- `meta.source_profile_revision` matching current configuration state;
-- no unresolved markers anywhere in JSON;
-- a commercial page and next-step page;
-- `evidence_ids` on proof pages, pointing to valid ledger entries;
+- `meta.source_profile_revision` matching the current configuration state;
+- no unresolved markers anywhere in the JSON;
+- a commercial page and a next-step page;
+- `evidence_ids` on proof pages pointing to valid ledger entries;
 - no ledger item with `confidence: unverified`;
 - structured investment `calculation` metadata.
 
-For `calculation.status: fixed`, provide numeric `total_value`. Every component included in total must provide numeric `amount_value`; the validator reconciles the sum.
+For `calculation.status: fixed`, provide numeric `total_value`. Every component included in the total must provide numeric `amount_value`; the validator reconciles the sum.
 
-For `range`, provide numeric `range_min` and `range_max`. For `formula`, provide formula and resolved inputs. For `variable`, explain what makes total variable.
+For `range`, provide numeric `range_min` and `range_max`. For `formula`, provide the formula and resolved inputs. For `variable`, explain what makes the total variable.
 
 The schema stays flexible for draft and consulting work, but autonomous release deliberately trades flexibility for verifiability.
