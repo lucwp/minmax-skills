@@ -24,6 +24,30 @@ CATEGORY_NAMES = {
 }
 
 
+def parse_frontmatter_description(frontmatter: str) -> str:
+    """Read inline or YAML block-scalar descriptions without extra dependencies."""
+    lines = frontmatter.splitlines()
+    for index, line in enumerate(lines):
+        match = re.match(r"^description:\s*(.*)$", line)
+        if not match:
+            continue
+
+        value = match.group(1).strip()
+        if value in {">", ">-", ">+", "|", "|-", "|+"}:
+            chunks: list[str] = []
+            for continuation in lines[index + 1 :]:
+                if continuation and not continuation[0].isspace():
+                    break
+                stripped = continuation.strip()
+                if stripped:
+                    chunks.append(stripped)
+            return " ".join(chunks)
+
+        return value.strip("\"'").strip()
+
+    return ""
+
+
 def parse_skill(path: Path) -> tuple[str, str]:
     text = path.read_text(encoding="utf-8")
     title_match = re.search(r"^#\s+(.+?)\s*$", text, re.MULTILINE)
@@ -32,9 +56,7 @@ def parse_skill(path: Path) -> tuple[str, str]:
     description = ""
     frontmatter = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
     if frontmatter:
-        desc_match = re.search(r"^description:\s*[\"']?(.+?)[\"']?\s*$", frontmatter.group(1), re.MULTILINE)
-        if desc_match:
-            description = desc_match.group(1).strip()
+        description = parse_frontmatter_description(frontmatter.group(1))
 
     if not description:
         body = re.sub(r"^#\s+.+?$", "", text, count=1, flags=re.MULTILINE).strip()
