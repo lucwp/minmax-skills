@@ -90,7 +90,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 <!-- SKILL_CATALOG:START -->
 ## Skill catalog
 
-**4 public skills** across **2 categories**.
+**2 public skills** across **2 categories**.
 
 ### Orchestration & Agents
 
@@ -102,9 +102,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 
 | Skill | What it does |
 | --- | --- |
-| [Minmax Enterprise Proposal](skills/business-revenue/minmax-enterprise-proposal/) | Generate, revise, render, and QA high-quality B2B and enterprise proposals using the business configuration compiled into this worker by minmax-proposal-inquiry. Use when a conf... |
-| [MinMax Proposal Inquiry](skills/business-revenue/minmax-proposal-inquiry/) | Configure and update the MinMax enterprise proposal worker for a specific business. Use for first-time setup or whenever reusable proposal context changes, including offers, pos... |
-| [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate the MinMax proposal system across business onboarding/configuration and enterprise proposal generation. Use when a user wants to set up MinMax proposals for a busine... |
+| [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate a complete enterprise proposal system inside one MinMax skill package. Use when a user wants to configure a business for reusable proposal generation, update offers/... |
 
 <!-- SKILL_CATALOG:END -->
 
