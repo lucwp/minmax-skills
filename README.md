@@ -1,62 +1,117 @@
 # MinMax Skills
 
-**Tryhard agent skills for high-level business work.**
+**Tryhard agent skills for people who care about the last 20%.**
 
-A public collection of high-effort agent skills for **SMBs and enterprise teams**, built and maintained by **Lucas W. Portella**.
+I'm a tech-savvy autistic business nerd with a tendency to hyperfocus on systems, edge cases, and the uncomfortable distance between **“this basically works”** and **“I would trust this with a client.”**
 
-MinMax is where I turn senior-level business workflows into reusable systems for AI agents. The primary target is **OpenAI / ChatGPT / Codex**, with the underlying patterns designed to remain portable to compatible agentic runtimes.
+MinMax is what comes out of that.
 
-These skills are built for work where quality, context, and judgment matter: **strategy, revenue, product, growth, partnerships, operations, design, analytics, executive communication, and high-stakes business artifacts**.
+This is a public collection of high-effort agent skills for **consulting-grade business work** across SMBs, scale-ups, and enterprise organizations.
 
-They are not prompt snippets, generic “act as an expert” wrappers, or automation for automation’s sake. A MinMax skill is meant to encode the parts that usually get lost between conversations: operating logic, decision rules, business context, references, assets, deterministic scripts, quality gates, stop conditions, and the criteria for what “good” actually looks like.
+Strategy. Revenue. Product. Growth. Partnerships. Operations. Design. Analytics. Executive artifacts. The kind of work where a confident hallucination is not a quirky model behavior. It is a problem.
 
-> **The idea:** turn complex business judgment into reusable agent infrastructure.
+> **LLMs hallucinate. MinMax skills are designed assuming they will.**
 
-## Who this is for
+The goal is not to make AI sound like a consultant.
 
-MinMax is designed primarily for people doing high-leverage work inside **SMBs, scale-ups, consultancies, and enterprise organizations**.
+The goal is to make agentic workflows **reliable enough to use in consulting without having to trust the model blindly**.
 
-Think founders, executives, revenue leaders, product leaders, operators, consultants, strategists, and cross-functional teams using AI for work that normally requires context, judgment, and iteration.
+## Why “MinMax”?
+
+In games, min-maxing means being unreasonably deliberate about a build: understand the system, cut what does not matter, stack what does, exploit the interactions, and keep tuning until the result performs the way you want.
+
+That is pretty close to how I approach business systems.
+
+I like finding the weak link. I like turning fuzzy judgment into explicit rules without making the rules stupid. I like automating repeatable work without automating away the part that actually requires judgment.
+
+And I care disproportionately about the last 20%.
+
+The first 80% gets you a convincing demo.
+
+The last 20% is where you discover whether the workflow survives contradictory context, missing information, pricing exceptions, bad inputs, multiple sources of truth, edge cases, client scrutiny, and the simple question:
+
+**“Where did this fact come from?”**
+
+That is the part MinMax is built for.
+
+## Consulting-grade, not hallucination-free
+
+No skill can honestly guarantee that an LLM will never hallucinate.
+
+So I do not try to solve hallucination with another sentence saying **“do not hallucinate.”**
+
+MinMax skills are designed to make hallucinations **harder to introduce, easier to detect, and less likely to survive into the final output**.
+
+Depending on the workflow, that means things like:
+
+- **Explicit sources of truth.** Define which file, dataset, business profile, source, or user-provided fact wins when context conflicts.
+- **Evidence before claims.** Important claims should be traceable to supplied evidence, approved business context, or a clearly identified external source.
+- **No silent gap-filling.** If a price, metric, client fact, legal term, testimonial, or assumption is unknown, mark the gap instead of inventing a plausible answer.
+- **Fact / assumption separation.** Keep verified facts, estimates, hypotheses, and recommendations from quietly blending into one confident paragraph.
+- **Fail closed when needed.** If a critical input is missing or inconsistent, stop the downstream workflow instead of fabricating enough information to continue.
+- **Deterministic validation.** Use scripts, schemas, calculators, preflights, and regression checks for things a model should not be trusted to validate by vibes.
+- **Consistency checks.** Totals, statuses, recommendations, dates, and repeated claims should agree across the artifact.
+- **Human-readable uncertainty.** A consultant should be able to see what is known, what is inferred, and what still needs validation.
+
+The point is not zero-risk AI.
+
+The point is **AI you can supervise like a serious piece of consulting infrastructure rather than a very articulate intern with no fear of being wrong.**
+
+## Business nerd first, AI nerd second
+
+MinMax is not a general collection of developer utilities.
+
+The center of gravity is **high-level business activity** where an agent needs to reason across messy context and still produce something you would be comfortable putting in front of a founder, executive, client, or investment committee.
 
 Typical use cases include:
 
 - structuring enterprise proposals and commercial recommendations;
-- planning complex accounts, partnerships, and revenue motions;
-- turning business context into repeatable operating systems;
+- planning accounts, partnerships, and revenue motions;
+- turning business context into reusable operating systems;
 - diagnosing product, growth, retention, and KPI problems;
 - designing executive-ready reports, plans, and decision artifacts;
 - orchestrating multi-step agent workflows without wasting model capability or context;
-- standardizing how teams approach recurring high-level work.
+- encoding the way a good operator or consultant approaches recurring high-level work.
 
-## Why MinMax
+I care less about making an agent **sound like an expert** and more about making it **operate like someone competent already thought through the workflow, the failure modes, and the review process**.
 
-Most agent workflows fail in boring ways: vague instructions, missing context, inconsistent quality, duplicated work, invented assumptions, or no clear definition of “done.” Those failures matter much more when the output informs a client, an executive decision, a commercial negotiation, or a strategic bet.
+## What makes a MinMax skill different
 
-MinMax skills are built to reduce those failure modes.
+These are not prompt snippets, “act as a world-class consultant” wrappers, or giant markdown files that look sophisticated until the task stops following the happy path.
 
-- **Business judgment over generic prompting.** The workflow should understand the decision being made, not merely produce well-formatted text.
-- **Opinionated by design.** Good workflows require choices. Skills include decision rules, boundaries, escalation logic, and defaults instead of pushing every decision back to the user.
-- **Built for consequential work.** The target output is something usable: a proposal, strategy, analysis, plan, operating system, recommendation, decision, or production-ready artifact.
-- **Agent-native.** Skills are designed to work with tools, files, references, scripts, other skills, and multi-step execution rather than as isolated prompts.
-- **Quality-gated.** When a workflow is fragile, the skill should validate it. Deterministic checks, preflights, regression tests, and explicit PASS/FAIL criteria are preferred over “looks good to me.”
-- **Reusable business context.** Offers, positioning, pricing rules, evidence, templates, design systems, and operating constraints can live with the workflow rather than being rediscovered every run.
-- **Complex when complexity earns its keep.** I am not optimizing for the shortest `SKILL.md`. I am optimizing for reliable outcomes without unnecessary machinery.
+A MinMax skill can include the operating system around the prompt.
+
+- **Opinionated by design.** Decision rules, defaults, boundaries, escalation logic, and stop conditions are explicit when they matter.
+- **Source-grounded.** Business facts and reusable context should have identifiable sources of truth instead of living in model improvisation.
+- **Built for consequential work.** The target is something usable: a proposal, strategy, analysis, operating model, recommendation, decision, or production-ready artifact.
+- **Agent-native.** Skills are designed around tools, files, references, scripts, other skills, and multi-step execution rather than a single giant prompt.
+- **Quality-gated.** If something can fail deterministically, I would rather test it than ask the model to “double-check.”
+- **Context-rich.** Offers, positioning, pricing rules, proof, templates, design systems, operating constraints, and governance can live with the workflow instead of being rediscovered every run.
+- **Complex when complexity earns its keep.** I am not optimizing for the shortest `SKILL.md`. I am optimizing for the simplest system I would actually trust with the task.
 
 ## Start here
 
 ### [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/)
 
-A lightweight control plane for planning, delegation, model selection, context management, verification, and cost-aware agent execution. Use it when the problem is not “can the model answer this?” but **“what is the best way to get this business task done?”**
+The skill behind the name.
+
+A lightweight control plane for planning, delegation, model selection, context management, verification, and cost-aware agent execution.
+
+It exists for the moment when the question stops being **“can the model answer this?”** and becomes **“what is the safest and most efficient way to get this done without turning the workflow into agent spaghetti?”**
 
 ### [MinMax Proposals](skills/business-revenue/minmax-proposals/)
 
-A reusable proposal system for SMB and enterprise commercial work. It combines business onboarding, offer and pricing configuration, positioning, brand rules, proposal strategy, HTML rendering, and QA into one reusable workflow.
+A reusable proposal system for SMB and enterprise commercial work.
 
-Configure the business once, then generate decision-oriented proposals without rebuilding the commercial context from scratch every time.
+It combines business onboarding, offer and pricing configuration, positioning, claim governance, brand rules, proposal strategy, HTML rendering, and QA into one workflow.
+
+The business is configured once. Facts, prices, proof, and commercial rules come from explicit sources of truth. Missing information stays missing until it is resolved. The final proposal passes validation before it is treated as client-ready.
+
+It is intentionally overbuilt compared with **“write me a proposal.”**
+
+That is the point.
 
 ## What you will find here
-
-The repository focuses on high-level business activities rather than general-purpose developer utilities.
 
 | Area | Examples |
 | --- | --- |
@@ -64,28 +119,34 @@ The repository focuses on high-level business activities rather than general-pur
 | **Business & revenue** | Strategy, enterprise proposals, partnerships, sales systems, account planning, RevOps |
 | **Product & growth** | Product strategy, discovery, retention, experimentation, prioritization, growth systems |
 | **Marketing & GTM** | Positioning, messaging, demand generation, GTM planning, commercial narratives |
-| **Design & UX** | Product design, UI/UX systems, design governance, high-quality business-facing artifacts |
+| **Design & UX** | Product design, UI/UX systems, design governance, client-facing artifacts |
 | **Operations & process** | SOPs, service blueprints, operating systems, process design, management cadence |
-| **Data & analytics** | KPI design, business diagnostics, dashboards, analytical decision support |
+| **Data & analytics** | KPI design, business diagnostics, dashboards, evidence-backed decision support |
 | **Executive artifacts** | Proposals, reports, presentations, memos, plans, spreadsheets, decision documents |
 
-## Philosophy
+## The last 20%
 
-A useful business skill should make an agent **more consistent, more context-aware, more commercially useful, and harder to derail**.
+A lot of AI tooling is optimized around getting to a plausible first answer quickly.
 
-The goal is not to make AI imitate a job title. It is to encode a better operating model for completing the work.
+That is useful. It is also not what this repository is primarily about.
 
-That often means going beyond prose instructions. Depending on the problem, a skill may include:
+MinMax starts where the happy path ends.
+
+If a workflow only needs three good instructions, it should stay three instructions. But when the work has real state, reusable business context, multiple sources of truth, fragile calculations, branching logic, external evidence, visual output, or meaningful failure modes, those things should be designed explicitly.
+
+That can mean going beyond prose:
 
 ```text
 SKILL.md      routing and execution contract
 agents/       runtime metadata and agent configuration
-references/   deeper domain rules and reusable business context
-assets/       templates, icons, and static production assets
-scripts/      deterministic helpers, validators, and renderers
+references/   business rules, evidence policies, and reusable context
+assets/       templates, icons, and production assets
+scripts/      validators, calculators, renderers, and deterministic helpers
 ```
 
-Not every skill needs all of that. Complexity is only justified when it improves the reliability, repeatability, or quality of the business result.
+The objective is not complexity.
+
+The objective is reaching the point where the workflow becomes **boringly dependable**.
 
 ## Repository structure
 
@@ -172,7 +233,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 
 Copy the complete active skill directory into the skills directory used by your agent runtime, then follow the runtime-specific installation rules. Keep the full folder together: `SKILL.md` may progressively load supporting references, assets, or scripts during execution.
 
-If you are adapting a MinMax skill to another runtime, preserve the **workflow contract, business logic, and quality gates** rather than copying only the top-level prompt.
+If you adapt a MinMax skill to another runtime, preserve the **workflow contract, source-of-truth rules, and quality gates** rather than copying only the top-level prompt.
 
 ## Authorship and attribution
 
