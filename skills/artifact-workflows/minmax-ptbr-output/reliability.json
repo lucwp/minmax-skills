@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "level": "production-ready",
+  "scope": "Generate, rewrite, translate, edit, and review Brazilian Portuguese prose while preserving semantic responsibility, register, protected spans, and domain terminology.",
+  "autonomous_envelope": "Produce or revise PT-BR text artifacts from supplied context without external publication, sending, account changes, or other side effects. The skill may autonomously return text, including a no-change result, but high-consequence factual, legal, medical, financial, contractual, or public-release decisions remain outside this envelope unless independently validated by the surrounding workflow.",
+  "controls": {
+    "source_of_truth": {"status": "implemented", "evidence": ["SKILL.md", "references/editorial-standard.md"]},
+    "uncertainty_handling": {"status": "implemented", "evidence": ["SKILL.md", "references/grammar-and-style.md", "references/regression-suite.md"]},
+    "fail_closed": {"status": "implemented", "evidence": ["SKILL.md", "references/editorial-standard.md"]},
+    "deterministic_validation": {"status": "implemented", "evidence": ["tests/test_reliability.py"]},
+    "side_effect_safety": {"status": "not_applicable", "reason": "The autonomous envelope ends at returning or locally producing text; the skill does not authorize external sending, publishing, account changes, or irreversible mutations."},
+    "idempotency": {"status": "not_applicable", "reason": "The skill does not perform external mutations; callers own file overwrite and persistence semantics when saving generated text."},
+    "postcondition_verification": {"status": "implemented", "evidence": ["SKILL.md", "references/editorial-standard.md", "references/regression-suite.md"]},
+    "rollback_or_compensation": {"status": "not_applicable", "reason": "Text outputs are replaceable artifacts and no irreversible external mutation is authorized by this skill."},
+    "untrusted_input_boundary": {"status": "implemented", "evidence": ["SKILL.md", "references/grammar-and-style.md"]},
+    "concurrency_control": {"status": "not_applicable", "reason": "The skill does not authorize concurrent external writes; callers own output-path locking or merge behavior if multiple jobs persist text."},
+    "auditability": {"status": "implemented", "evidence": ["references/regression-suite.md", "tests/test_reliability.py"]},
+    "termination_budgets": {"status": "implemented", "evidence": ["SKILL.md"]},
+    "regression_tests": {"status": "implemented", "evidence": ["tests/test_reliability.py", "references/regression-suite.md"]}
+  },
+  "tests": ["tests/test_reliability.py"],
+  "limitations": [
+    "Naturalness and semantic-preservation behavior remain model-dependent; the executable regression test verifies load-bearing skill contracts and suite integrity, while behavioral quality should also be spot-checked when changing the instructions or target model.",
+    "The skill does not independently verify external facts, legal validity, medical accuracy, financial correctness, or source truth unless the surrounding workflow provides and validates those inputs.",
+    "Publishing, sending, or other external side effects are outside the autonomous envelope."
+  ]
+}

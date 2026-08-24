@@ -1,0 +1,13 @@
+interface:
+  display_name: MinMax PT-BR Output
+  short_description: Production-grade Brazilian Portuguese output
+  default_prompt: Use $minmax-ptbr-output to produce precise, natural, production-grade Brazilian Portuguese output.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  allow_implicit_invocation: true
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
