@@ -87,30 +87,25 @@ I am not optimizing for the shortest `SKILL.md`. I am optimizing for the simples
 
 ## Start here
 
-There is no required order and no “base” MinMax skill. Pick the smallest skill that matches the problem you are actually trying to solve.
+Don't start by choosing a skill. Start by finding the **kind of work** you are trying to improve.
 
-| If you need to... | Start with | What it is for |
+MinMax is organized around business problems, not model families or arbitrary levels of complexity. Each category is a different path into the collection:
+
+| Path | Go here when... | Typical work |
 | --- | --- | --- |
-| Decide how a complex agent workflow should plan, delegate, verify, and spend model capability | [**MinMax Orchestrator GPT**](skills/orchestration-agents/minmax-orchestrator-gpt/) | A lightweight control plane for multi-step work. Use it when orchestration genuinely reduces cost, risk, or context pressure. Do not wrap simple tasks in agents just because you can. |
-| Turn business context, pricing, proof, and deal specifics into a client-ready B2B proposal | [**MinMax Proposals**](skills/business-revenue/minmax-proposals/) | A reusable proposal system with explicit sources of truth, claim governance, commercial logic, rendering, and QA. |
-| Make final Brazilian Portuguese output precise, natural, and resistant to generic AI writing without changing what it means | [**MinMax PT-BR Output**](skills/artifact-workflows/minmax-ptbr-output/) | A production-grade editorial layer for writing, rewriting, translating, and reviewing PT-BR while preserving facts, modality, voice, and domain language. |
+| **Orchestration & agents** `skills/orchestration-agents/` | The work itself is multi-step and you need to decide how an agent should plan, delegate, manage context, verify, escalate, and stop. | Agent architecture, model routing, delegation, context governance, verification, bounded autonomy. |
+| **Business & revenue** `skills/business-revenue/` | The problem lives somewhere between strategy and money: winning business, structuring offers, managing accounts, partnerships, sales, or revenue operations. | Enterprise proposals, account planning, partnerships, sales systems, commercial strategy, RevOps. |
+| **Product & growth** `skills/product-growth/` | You are deciding what to build, why users behave the way they do, or how a product should find, create, and compound growth. | Product strategy, discovery, PMF, retention, experimentation, prioritization, growth loops. |
+| **Marketing & content** `skills/marketing-content/` | You need to make a market understand, remember, trust, or act on something. | Positioning, messaging, GTM, campaigns, copy, content systems, demand generation. |
+| **Design & UX** `skills/design-ux/` | The quality of the interface, interaction, visual system, or user experience is part of the problem. | Product design, UX review, UI systems, visual direction, accessibility, design governance. |
+| **Operations & process** `skills/operations-process/` | The problem is how work moves through a company and who owns what along the way. | SOPs, process maps, service blueprints, operating rhythms, handoffs, management systems. |
+| **Data & analytics** `skills/data-analytics/` | A decision depends on metrics, evidence, diagnostics, or a quantitative model rather than narrative alone. | KPI design, metric diagnostics, dashboards, business analysis, forecasting, decision support. |
+| **Career** `skills/career/` | The workflow is about an individual career rather than a company operating problem. | Opportunity evaluation, CVs, applications, interview preparation, outreach, career operations. |
+| **Artifact workflows** `skills/artifact-workflows/` | The deliverable itself needs a production standard independent of the business domain that produced it. | Writing standards, reports, documents, presentations, spreadsheets, output QA and finalization. |
 
-Most MinMax skills are designed to stand on their own. Combine them only when the workflow actually benefits from composition.
+These categories are **paths, not maturity levels**. A task may need one skill from one category or a composition across several. Start with the category that owns the primary problem; add another only when it contributes a distinct capability.
 
-If none of these match what you need, jump to the [skill catalog](#skill-catalog). As the repository grows, that catalog is the canonical index of active skills.
-
-## What you will find here
-
-| Area | Examples |
-| --- | --- |
-| **Orchestration & agents** | Planning, delegation, model/context governance, verification, multi-agent execution |
-| **Business & revenue** | Strategy, enterprise proposals, partnerships, sales systems, account planning, RevOps |
-| **Product & growth** | Product strategy, discovery, retention, experimentation, prioritization, growth systems |
-| **Marketing & GTM** | Positioning, messaging, demand generation, GTM planning, commercial narratives |
-| **Design & UX** | Product design, UI/UX systems, design governance, client-facing artifacts |
-| **Operations & process** | SOPs, service blueprints, operating systems, process design, management cadence |
-| **Data & analytics** | KPI design, business diagnostics, dashboards, evidence-backed decision support |
-| **Executive artifacts** | Proposals, reports, presentations, memos, plans, spreadsheets, decision documents |
+The [skill catalog](#skill-catalog) below is the canonical list of what is currently available. This map exists to tell you **where to look**.
 
 ## The last 20%
 
