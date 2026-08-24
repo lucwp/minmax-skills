@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "status": "draft",
+  "business": {
+    "name": "Northstar Advisory",
+    "legal_name": "Northstar Advisory LLC",
+    "website": "https://example.com",
+    "category": "B2B revenue advisory",
+    "one_liner": "Northstar helps B2B companies redesign revenue systems across marketing, sales, and customer success.",
+    "markets": ["Brazil", "Latin America"],
+    "languages": ["pt-BR", "en"],
+    "default_currency": "BRL",
+    "proposal_issuer": {"name": "Alex Silva", "title": "Managing Partner", "email": "alex@example.com"}
+  },
+  "positioning": {
+    "ideal_customers": ["B2B companies with an existing sales motion but inconsistent pipeline and handoffs"],
+    "poor_fit_customers": ["Pre-revenue companies without a validated offer"],
+    "buyer_roles": ["CEO", "CRO", "Founder"],
+    "trigger_events": ["Revenue plateau", "New GTM leadership", "Expansion into a new segment"],
+    "core_problems": ["Fragmented GTM process", "Low forecast confidence", "Weak marketing-sales-CS handoffs"],
+    "value_proposition": "Turn a fragmented GTM motion into an operating system with clear ownership, metrics, and execution cadence.",
+    "competitive_alternatives": ["Internal transformation", "Traditional consulting project", "Hiring multiple functional leaders"],
+    "differentiators": ["Cross-functional revenue scope", "Operator-led implementation", "Explicit handoff and governance design"],
+    "objections": ["We can fix this internally", "Consulting will create slides but not execution"],
+    "decision_criteria": ["Senior involvement", "Speed to implementation", "Clear operating cadence"],
+    "preferred_framing": ["operating system", "revenue architecture", "decision clarity"],
+    "avoid_framing": ["magic growth", "guaranteed revenue"]
+  },
+  "offers": [{
+    "id": "revenue-system-redesign",
+    "name": "Revenue System Redesign",
+    "descriptor": "Diagnostic and operating-model redesign",
+    "type": "project",
+    "summary": "A fixed-scope diagnostic and redesign of the revenue operating system.",
+    "best_for": ["Companies with fragmented GTM ownership and inconsistent execution"],
+    "business_value": "Create a shared operating model for pipeline generation, conversion, expansion, and accountability.",
+    "delivery": {"duration": "8 weeks", "cadence": "Weekly working sessions", "mechanism": ["Data review", "Stakeholder interviews", "Process redesign", "Operating cadence design"]},
+    "deliverables": ["Revenue diagnostic", "Target operating model", "KPI architecture", "90-day implementation plan"],
+    "boundaries": ["Does not include CRM implementation", "Does not guarantee revenue outcomes"],
+    "prerequisites": ["Access to current pipeline and funnel data"],
+    "client_dependencies": ["Executive sponsor", "Functional leader participation"],
+    "pricing": {"model": "fixed", "currency": "BRL", "unit": "project", "public_price": null, "range": {"min": 45000, "max": 65000}, "floor": 45000, "variables": ["Number of business units", "Data quality", "Workshop scope"], "discount_rules": ["Discounts below the floor require managing-partner approval"], "notes": "Final price depends on confirmed scope."},
+    "proof_ids": ["metric-1"]
+  }],
+  "commercial": {"default_payment_terms": "50% on signature, 50% at midpoint", "proposal_validity_days": 30, "tax_notes": "Taxes included unless otherwise stated.", "discount_policy": "Do not discount below configured floor without managing-partner approval.", "scope_change_policy": "Material scope changes require written re-estimation.", "scenario_policy": {"mode": "only_when_materially_distinct", "recommended_label": "Recommended", "minimum_label": "Focused", "expanded_label": "Expanded"}},
+  "proof": {"metrics": [{"id": "metric-1", "claim": "Example proof item — replace with verified company evidence.", "value": "[TO DEFINE]", "source": "[TO DEFINE]", "confidence": "unverified", "allowed_contexts": []}], "case_studies": [], "testimonials": [], "customer_logos": []},
+  "brand": {"logo_path": "assets/brand/logo.svg", "primary_color": "#0F172A", "accent_color": "#0EA5E9", "background_color": "#F8FAFC", "surface_color": "#FFFFFF", "text_color": "#0F172A", "muted_color": "#64748B", "font_display": "Inter, ui-sans-serif, system-ui, sans-serif", "font_body": "Inter, ui-sans-serif, system-ui, sans-serif", "border_radius_px": 18, "visual_style": ["minimal", "editorial", "clean"], "anti_style": ["ornamental", "busy"], "image_style": "Use documentary or business-context imagery only when it adds meaning.", "cover_image_path": "", "footer_text": "Northstar Advisory", "confidentiality_label": "Confidential"},
+  "voice": {"default_language": "pt-BR", "tone": ["specific", "commercial", "calm"], "preferred_terms": ["recommendation", "operating model"], "banned_terms": ["guaranteed growth", "revolutionary"], "claim_policy": "Use verified proof only; label estimates and assumptions."},
+  "proposal_defaults": {"page_size": "A4-landscape", "include_about_us": false, "approval_mode": "thesis_first", "generate_email": "on_request", "default_next_step": "Align the final scope and contracting path."}
+}

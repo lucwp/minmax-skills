@@ -2,11 +2,18 @@
 
 ## Public entrypoint
 
-`minmax-proposals` is the user-facing router. The two workers have narrow responsibilities.
+`minmax-proposals` is the only public and installable skill.
 
-## Worker A — minmax-proposal-inquiry
+It contains two private internal skills:
 
-Owns reusable configuration:
+- `internal-skills/minmax-proposal-inquiry/`
+- `internal-skills/minmax-enterprise-proposal/`
+
+The user must not install or invoke them separately.
+
+## Internal Skill A — minmax-proposal-inquiry
+
+Own reusable configuration:
 
 - business identity;
 - offer architecture;
@@ -16,11 +23,11 @@ Owns reusable configuration:
 - brand assets and visual tokens;
 - voice and proposal workflow defaults.
 
-Its successful terminal state is an updated, validated `minmax-enterprise-proposal` worker.
+Its successful terminal state is an updated and validated internal Enterprise Proposal configuration.
 
-## Worker B — minmax-enterprise-proposal
+## Internal Skill B — minmax-enterprise-proposal
 
-Owns deal execution:
+Own deal execution:
 
 - deal brief;
 - commercial thesis;
@@ -35,18 +42,24 @@ It must not redefine reusable business configuration during ordinary proposal wo
 
 ## Configuration ownership
 
-The configured enterprise worker is the system of record. The Inquiry may use temporary profile files while interviewing, but the final configuration must be compiled into the enterprise worker.
+The internal Enterprise Proposal folder is the system of record for reusable configuration. Inquiry may create temporary working files while interviewing, but after compilation the source of truth is:
 
-## Update rule
+- `internal-skills/minmax-enterprise-proposal/references/business-profile.json`;
+- `internal-skills/minmax-enterprise-proposal/references/configuration-state.json`;
+- `internal-skills/minmax-enterprise-proposal/assets/brand/`;
+- `internal-skills/minmax-enterprise-proposal/CONFIGURATION.md`.
 
-When Inquiry changes reusable configuration, it must:
+## Compile rule
 
-1. validate the new profile;
-2. update the enterprise worker profile and approved assets;
-3. write configuration metadata;
-4. run the enterprise worker profile validator;
-5. package the replacement worker when direct in-place persistence is unavailable.
+Whenever Inquiry changes reusable configuration, it must:
+
+1. validate the working profile;
+2. update the internal Enterprise Proposal profile and approved brand assets;
+3. increment configuration metadata;
+4. run the Enterprise Proposal profile validator;
+5. validate the one-package bundle;
+6. if persistence is immutable, package a replacement **root `minmax-proposals/skill.zip`**, never a standalone worker ZIP.
 
 ## Staleness rule
 
-Any proposal generated after a reusable configuration change must use the updated worker. Do not generate from the pre-update profile.
+Any proposal generated after a reusable configuration change must use the updated internal worker. Do not generate from a pre-update profile.

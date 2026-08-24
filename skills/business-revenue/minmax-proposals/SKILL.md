@@ -1,73 +1,99 @@
 ---
 name: minmax-proposals
-description: Orchestrate the MinMax proposal system across business onboarding/configuration and enterprise proposal generation. Use when a user wants to set up MinMax proposals for a business, update offer/pricing/brand/positioning information used by proposals, create a new client proposal, revise an existing proposal, or decide whether proposal configuration must be refreshed first. Route configuration work to minmax-proposal-inquiry and proposal production to minmax-enterprise-proposal, enforcing the shared worker state contract.
+description: "Orchestrate a complete enterprise proposal system inside one MinMax skill package. Use when a user wants to configure a business for reusable proposal generation, update offers/pricing/positioning/proof/brand rules, create or revise a client proposal, render proposal HTML, or run proposal QA. Internally route work between two private skills: minmax-proposal-inquiry for reusable business configuration and minmax-enterprise-proposal for deal-specific proposal production. Keep one public entrypoint and one installable package; configuration changes must be compiled into the internal enterprise worker before future proposals use them."
 ---
 
 # MinMax Proposals
 
-Act as the single public entrypoint for the MinMax proposal system. Keep business configuration and deal execution separate.
+Act as the only public entrypoint for the proposal system. Do not expose the two internal skills as separately installable or separately invoked skills.
 
-## Architecture
+## Internal architecture
 
-Use two workers:
+Use exactly two private internal skills:
 
-1. `minmax-proposal-inquiry` — configure or update the business-specific proposal engine.
-2. `minmax-enterprise-proposal` — generate, revise, render, and QA proposals using the configuration compiled into that worker.
+1. **minmax-proposal-inquiry** — configure and update reusable business context.
+2. **minmax-enterprise-proposal** — generate, revise, render, and QA deal-specific proposals from the compiled configuration.
 
-Read `references/orchestration-contract.md` before routing. Read `references/state-machine.md` when configuration state is ambiguous.
+Load the relevant internal instructions only when routing requires them:
+
+- Inquiry: `internal-skills/minmax-proposal-inquiry/INSTRUCTIONS.md`
+- Enterprise Proposal: `internal-skills/minmax-enterprise-proposal/INSTRUCTIONS.md`
+
+Read `references/orchestration-contract.md` before routing. Read `references/state-machine.md` whenever configuration state is missing, ambiguous, draft, or stale.
+
+## Single-package invariant
+
+Maintain one installable skill package named `minmax-proposals`.
+
+- Keep only the root `SKILL.md` as the public skill entrypoint.
+- Treat the two folders under `internal-skills/` as private workers, not standalone installable skills.
+- Never ask the user to install `minmax-proposal-inquiry` or `minmax-enterprise-proposal` separately.
+- Never create a separate enterprise-worker ZIP as the normal persistence mechanism.
 
 ## Routing
 
 ### Route to Inquiry
 
-Use `minmax-proposal-inquiry` when any of these is true:
+Load and execute the Inquiry internal skill when any of these is true:
 
 - first-time setup;
-- proposal worker is missing, template, draft, stale, or materially incomplete;
-- user wants to change business identity, positioning, ICP, buyer logic, offers, pricing, discount rules, proof, claims, brand, logos, visual rules, voice, commercial policies, or proposal defaults;
-- a proposal request depends on information the configured worker does not contain and the missing information is reusable business context rather than deal-specific context.
+- internal enterprise configuration is `template`, `draft`, `stale`, missing, or materially incomplete;
+- reusable business identity, positioning, ICP, buyer logic, offers, pricing, discount rules, proof, claims, brand, logos, visual rules, voice, commercial policies, or proposal defaults changed;
+- a proposal request depends on missing information that should affect future proposals, not only the current deal.
 
-The Inquiry must update the enterprise worker. A standalone profile is an intermediate build artifact, not the final system of record.
+The Inquiry must compile validated reusable configuration into the internal Enterprise Proposal skill before proposal generation continues.
 
 ### Route to Enterprise Proposal
 
-Use `minmax-enterprise-proposal` when:
+Load and execute the Enterprise Proposal internal skill when:
 
-- its embedded profile is `configured` or an explicitly accepted `draft`;
-- requested changes are deal-specific rather than reusable business configuration;
-- the user wants a commercial thesis, proposal, proposal revision, investment structure, proposal HTML, or proposal QA.
+- its embedded profile is `configured`, or the user explicitly accepts a `draft` profile with surfaced gaps;
+- the request is deal-specific;
+- the user wants a commercial thesis, proposal, revision, investment structure, standalone HTML, or proposal QA.
 
-### Mixed requests
+### Mixed request
 
-If a request contains both configuration changes and a proposal request:
+If a request changes reusable configuration and asks for a proposal in the same workflow:
 
-1. update the enterprise worker through Inquiry first;
-2. validate the updated worker;
-3. generate the proposal against the new configuration in the same workflow when possible.
+1. route the reusable change through Inquiry;
+2. validate and compile the updated internal enterprise configuration;
+3. run Enterprise Proposal against the updated configuration;
+4. never generate against the pre-update profile.
 
-Never let proposal generation continue against stale configuration after the user changes a reusable commercial rule.
+## Configuration ownership
 
-## State contract
+Persist reusable proposal configuration only inside the internal Enterprise Proposal skill:
 
-The proposal worker owns the persistent business configuration in:
+- `internal-skills/minmax-enterprise-proposal/references/business-profile.json`
+- `internal-skills/minmax-enterprise-proposal/references/configuration-state.json`
+- `internal-skills/minmax-enterprise-proposal/assets/brand/`
+- `internal-skills/minmax-enterprise-proposal/CONFIGURATION.md`
 
-- `references/business-profile.json`;
-- `assets/brand/`;
-- `CONFIGURATION.md`;
-- `references/configuration-state.json` when present.
+The Inquiry owns mutation of those files. Enterprise Proposal reads them and must not silently rewrite reusable business rules during ordinary deal work.
 
-The Inquiry owns the process that modifies those files. The Enterprise Proposal worker reads them but does not rewrite business configuration during ordinary proposal generation.
+## Persistence modes
 
-## Runtime constraints
+### Writable workspace
 
-In a writable local/Codex workspace, let Inquiry patch the sibling `minmax-enterprise-proposal` skill directly.
+When the MinMax skill source directory is writable, let Inquiry patch the internal Enterprise Proposal skill in place and increment `configuration_revision`.
 
-In environments where installed skills cannot be overwritten in place, let Inquiry build and package a replacement `minmax-enterprise-proposal/skill.zip`. Treat installing/replacing that worker as the persistence step. Do not pretend an installed package was silently mutated when it was not.
+### Installed/immutable skill environment
+
+When the installed skill bundle cannot be modified persistently:
+
+1. let Inquiry build a replacement copy of the entire `minmax-proposals` package;
+2. write the updated business profile and approved brand assets into its internal Enterprise Proposal folder;
+3. validate the rebuilt bundle;
+4. package and return one replacement `skill.zip` for `minmax-proposals`.
+
+Do not claim that an immutable installed skill was silently updated. The replacement package is the persistence step.
 
 ## Non-negotiable behavior
 
-- Do not ask the full business inquiry again for each deal.
-- Do not store reusable business facts only in conversation history.
-- Do not let the Enterprise Proposal worker invent missing reusable configuration.
-- Do not create a new configured worker per client; one configured worker represents the proposal system for one business/brand context.
-- If a business operates materially different brands or commercial systems, create separate configured proposal workers or explicit profiles only when the distinction is operationally necessary.
+- Do not run the full business inquiry again for each client.
+- Do not store reusable commercial facts only in chat history.
+- Do not let Enterprise Proposal invent missing reusable configuration.
+- Do not create three pricing scenarios unless alternatives are materially different.
+- Do not invent prices, discounts, claims, proof, logos, legal terms, guarantees, or customer facts.
+- Distinguish reusable business configuration from current-deal facts.
+- Keep the root orchestrator in control of every handoff and terminal output.

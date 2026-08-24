@@ -1,8 +1,10 @@
 # Changelog
 
-## 1.0.0 — 2026-08-24
+## 2.0.0 — 2026-08-24
 
-- Initial MinMax proposal orchestrator.
-- Routes reusable business setup/updates to Inquiry and deal execution to Enterprise Proposal.
-- Defines UNCONFIGURED, DRAFT, CONFIGURED, and STALE states.
-- Enforces compile-before-generate behavior after reusable configuration changes.
+- Consolidated the system into one installable `minmax-proposals` skill.
+- Embedded `minmax-proposal-inquiry` and `minmax-enterprise-proposal` as two private internal skills.
+- Removed the requirement to install or replace three separate skills.
+- Changed persistence so Inquiry compiles configuration into the internal Enterprise Proposal worker.
+- Added whole-orchestrator replacement packaging for immutable installed environments.
+- Preserved targeted incremental updates, configuration revisioning, proposal validation, HTML rendering, and QA.

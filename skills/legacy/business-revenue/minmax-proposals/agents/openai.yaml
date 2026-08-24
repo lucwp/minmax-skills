@@ -1,0 +1,3 @@
+interface:
+  display_name: "MinMax Proposals"
+  short_description: "Orchestrates proposal setup and generation"

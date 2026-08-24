@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "proposal_title": "Revenue System Redesign",
+    "client_name": "Example Client",
+    "client_logo_path": "",
+    "issue_date": "2026-08-24",
+    "valid_until": "2026-09-23",
+    "prepared_for": "Executive Team",
+    "prepared_by": "Northstar Advisory"
+  },
+  "pages": [
+    {"type":"cover","section":"Commercial proposal","title":"Revenue System Redesign","subtitle":"A focused redesign of the operating model behind pipeline, conversion, and expansion."},
+    {"type":"executive","section":"Executive summary","title":"A single operating model for a fragmented revenue motion","body":["The recommendation is an eight-week redesign focused on the operating system behind marketing, sales, and customer success rather than isolated functional fixes."],"cards":[{"label":"Recommended scope","title":"Revenue System Redesign","body":"Diagnostic, target operating model, KPI architecture, and 90-day implementation plan."},{"label":"Investment","value":"R$ 55,000","body":"Illustrative example only."},{"label":"Next step","title":"Confirm scope","body":"Align access, stakeholders, and contracting path."}]},
+    {"type":"narrative","section":"What we understood","title":"The constraint is not effort. It is system coherence.","body":["The current GTM motion has functional activity, but ownership, definitions, and handoffs do not yet operate as one revenue system.","That fragmentation reduces forecast confidence and makes improvement initiatives harder to sustain."],"bullets":["Multiple teams influence the same funnel","Decision criteria need shared definitions","Implementation speed matters more than slide depth"]},
+    {"type":"decision","section":"Recommendation","title":"Redesign the operating model before adding more tooling","body":["The proposed sequence prioritizes operating clarity, then translates it into metrics and an implementation plan."],"cards":[{"label":"Priority","title":"One revenue model","body":"Align ownership and handoffs around a shared commercial system."},{"label":"Tradeoff","title":"No CRM implementation","body":"Tooling can follow after the target operating model is stable."}]},
+    {"type":"scope","section":"Scope","title":"Revenue System Redesign","subtitle":"Diagnostic and operating-model redesign","body":["The engagement creates a practical operating model that executives and functional teams can run after the project ends."],"items":[{"label":"How it works","body":"Review funnel data, current processes, and decision definitions."},{"label":"How it works","body":"Interview key revenue stakeholders and map handoffs."},{"label":"How it works","body":"Design the target operating cadence and KPI architecture."},{"label":"Deliver","body":"Revenue diagnostic."},{"label":"Deliver","body":"Target operating model."},{"label":"Deliver","body":"90-day implementation plan."}]},
+    {"type":"commercial","section":"Investment","title":"Recommended investment","investment":{"included_scope":["Revenue System Redesign"],"assumptions":["Eight-week project","One executive sponsor","Access to current funnel data"],"rationale":"A fixed project is appropriate because the work has a defined diagnostic and design outcome.","components":[{"label":"Project fee","amount":"R$ 55,000","unit":"fixed","note":"Illustrative example"}],"total":"R$ 55,000","payment_terms":"50% on signature, 50% at midpoint"}},
+    {"type":"next-step","section":"Next steps","title":"Move from alignment to execution","body":["Once the scope is confirmed, the parties can finalize commercial terms and the contracting path."],"next_step":"Confirm scope, stakeholders, and contracting path."}
+  ]
+}
