@@ -61,7 +61,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 
 | Skill | What it does |
 | --- | --- |
-| [MinMax Consulting Giga Brain](skills/business-revenue/minmax-consulting-gigabrain/) | >- |
+| [MinMax Consulting Giga Brain](skills/business-revenue/minmax-consulting-gigabrain/) | Your smartest harmonized consulting copilot. Not Thiago Finch's Mega Brain in a suit: this Giga Brain is built to turn messy business problems into defensible decisions, with so... |
 | [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate a complete enterprise proposal system inside one MinMax skill package. Use when a user wants to configure a business for reusable proposal generation, update offers/... |
 
 ### Artifact Workflows
