@@ -20,8 +20,17 @@ Do not duplicate one skill across categories. If classification is ambiguous, ch
 
 ## Required structure
 
+Active skill:
+
 ```text
 skills/<category>/<skill-name>/
+└── SKILL.md
+```
+
+Superseded skill:
+
+```text
+skills/legacy/<category>/<skill-name>/
 └── SKILL.md
 ```
 
@@ -38,11 +47,11 @@ scripts/      deterministic helpers
 
 Distinguish an **incremental improvement** from a **complete replacement**.
 
-- **Incremental improvement:** the skill keeps the same identity, primary trigger, responsibility, and conceptual contract. Update it in place under `skills/`. Do not create a legacy copy for every normal revision.
-- **Complete replacement:** a new skill supersedes the old one as the active implementation, especially when its identity/name, architecture, primary contract, or intended runtime behavior materially changes. Move the replaced skill out of the active catalog to `legacy/<category>/<old-skill-name>/`, then publish the replacement only under `skills/<category>/<new-skill-name>/`.
-- Never keep both the superseded and replacement skill active under `skills/` when the replacement is intended to be canonical.
+- **Incremental improvement:** the skill keeps the same identity, primary trigger, responsibility, and conceptual contract. Update it in place under `skills/<category>/`. Do not create a legacy copy for every normal revision.
+- **Complete replacement:** a new skill supersedes the old one as the active implementation, especially when its identity/name, architecture, primary contract, or intended runtime behavior materially changes. Move the replaced skill to `skills/legacy/<category>/<old-skill-name>/`, then publish the replacement only under `skills/<category>/<new-skill-name>/`.
+- Never keep both the superseded and replacement skill active when the replacement is intended to be canonical.
 - Legacy skills are historical snapshots. Do not update them after archival except to fix repository integrity or add clearly non-functional archival metadata.
-- The active `skills/` tree is the source of truth for what should be installed or used now. The `legacy/` tree exists only for history, rollback, and comparison.
+- Active category folders under `skills/` are the source of truth for what should be installed or used now. `skills/legacy/` exists only for history, rollback, and comparison.
 
 When uncertain, treat a change as a complete replacement only if keeping the previous skill active would create duplicate triggers, competing orchestration, or materially different behavior for the same user intent.
 
@@ -57,7 +66,7 @@ Before pushing a new skill:
 5. Third-party material is attributed when applicable.
 6. Large generated artifacts and dependency folders are excluded.
 7. The skill is placed under the correct primary category.
-8. If this is a complete replacement, the superseded skill has been moved to `legacy/` and removed from active `skills/`.
+8. If this is a complete replacement, the superseded skill has been moved to `skills/legacy/<category>/` and removed from its active category.
 
 ## README catalog
 
@@ -68,6 +77,4 @@ Do not manually edit content between:
 <!-- SKILL_CATALOG:END -->
 ```
 
-`scripts/update_readme.py` regenerates that section from the repository's `SKILL.md` files. The GitHub Action runs after changes reach `main`.
-
-The generated catalog must index only active skills under `skills/`; content under `legacy/` must remain outside the active catalog.
+`scripts/update_readme.py` regenerates that section from active category paths shaped as `skills/<category>/<skill>/SKILL.md`. Because archived skills live one level deeper under `skills/legacy/<category>/<skill>/`, they are excluded from the active catalog.
