@@ -1,4 +1,4 @@
-Public Skills
+## Public Skills
 
 A public collection of agent skills developed and maintained by **me**.
 
