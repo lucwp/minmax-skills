@@ -1,21 +1,24 @@
 # Proposal data schema
 
-The renderer consumes JSON with `schema_version`, `meta`, and `pages`.
+The renderer consumes JSON with `schema_version`, `meta`, optional `evidence_ledger`, and `pages`.
 
-```json
-{
-  "schema_version": "1.0",
-  "meta": {"proposal_title":"Proposal","client_name":"Client","client_logo_path":"","issue_date":"2026-08-24","valid_until":"2026-09-23","prepared_for":"","prepared_by":""},
-  "pages": [{"type":"cover|executive|narrative|decision|scope|sequence|comparison|commercial|proof|next-step","section":"Executive summary","title":"","subtitle":"","body":["Short paragraph"],"bullets":["Item"],"cards":[{"label":"","title":"","body":"","value":""}],"items":[{"label":"","title":"","body":""}],"investment":{"included_scope":[""],"assumptions":[""],"rationale":"","components":[{"label":"","amount":"","unit":"","note":""}],"total":"","payment_terms":""},"next_step":""}]
-}
-```
+`meta.release_mode` may be `draft`, `consulting`, or `autonomous`; omission means `consulting` for backward compatibility.
 
-## Required fields
-- `schema_version` must be `1.0`.
-- `meta.client_name` and `meta.proposal_title` are required.
-- `pages` must contain at least one page.
-- Every page requires `type`, `section`, and `title`.
-- `commercial` pages require investment keys for included scope, assumptions, rationale, components, and total. Values may be `[TO DEFINE]` but must not be silently omitted.
-- `next-step` pages require `next_step`.
+Every page requires `type`, `section`, and `title`. Commercial pages require investment keys for included scope, assumptions, rationale, components, and total. Next-step pages require `next_step`.
 
-The schema is intentionally flexible: content can be edited without hand-editing HTML.
+## Autonomous additions
+
+Autonomous release also requires:
+
+- `meta.source_profile_revision` matching current configuration state;
+- no unresolved markers anywhere in JSON;
+- a commercial page and next-step page;
+- `evidence_ids` on proof pages, pointing to valid ledger entries;
+- no ledger item with `confidence: unverified`;
+- structured investment `calculation` metadata.
+
+For `calculation.status: fixed`, provide numeric `total_value`. Every component included in total must provide numeric `amount_value`; the validator reconciles the sum.
+
+For `range`, provide numeric `range_min` and `range_max`. For `formula`, provide formula and resolved inputs. For `variable`, explain what makes total variable.
+
+The schema stays flexible for draft and consulting work, but autonomous release deliberately trades flexibility for verifiability.

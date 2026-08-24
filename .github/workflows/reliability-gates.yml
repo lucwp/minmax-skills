@@ -1,0 +1,30 @@
+name: Reliability gates
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+      - 'RELIABILITY.md'
+      - 'scripts/validate_reliability.py'
+      - '.github/workflows/reliability-gates.yml'
+  pull_request:
+    paths:
+      - 'skills/**'
+      - 'RELIABILITY.md'
+      - 'scripts/validate_reliability.py'
+      - '.github/workflows/reliability-gates.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  reliability:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate reliability manifests and regression tests
+        run: python scripts/validate_reliability.py --repo-root . --run-tests

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "level": "production-ready",
+  "scope": "Routing, delegation, verification, bounded autonomous reads, and bounded state-changing agent workflows.",
+  "autonomous_envelope": "Read-only work and validated bounded writes. Autonomous external writes require explicit preauthorization and action limits. Irreversible or high-consequence actions always require a human approval boundary.",
+  "controls": {
+    "source_of_truth": {"status": "implemented", "evidence": ["SKILL.md", "references/planning-engine.md"]},
+    "uncertainty_handling": {"status": "implemented", "evidence": ["references/assignment-contracts.md"]},
+    "fail_closed": {"status": "implemented", "evidence": ["references/production-safety.md", "references/termination-budgets.md"]},
+    "deterministic_validation": {"status": "implemented", "evidence": ["scripts/validate_action_manifest.py"]},
+    "side_effect_safety": {"status": "implemented", "evidence": ["references/production-safety.md", "references/action-manifest-schema.md"]},
+    "idempotency": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "postcondition_verification": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "rollback_or_compensation": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "untrusted_input_boundary": {"status": "implemented", "evidence": ["references/production-safety.md"]},
+    "concurrency_control": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "auditability": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "termination_budgets": {"status": "implemented", "evidence": ["references/termination-budgets.md"]},
+    "regression_tests": {"status": "implemented", "evidence": ["tests/test_action_manifest.py"]}
+  },
+  "tests": ["tests/test_action_manifest.py"],
+  "limitations": [
+    "The skill cannot provide cancellation, transactionality, locking, or idempotency when the runtime or target system does not expose the necessary primitive.",
+    "Irreversible or high-consequence actions are intentionally outside the autonomous envelope."
+  ]
+}

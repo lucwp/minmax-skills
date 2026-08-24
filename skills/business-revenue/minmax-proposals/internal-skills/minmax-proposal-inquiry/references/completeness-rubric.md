@@ -1,10 +1,10 @@
 # Profile completeness rubric
 
-Score each domain from 0–2.
+Score each domain from 0 to 2.
 
-- `0` — missing or too vague to use safely.
-- `1` — partially usable but requires deal-by-deal clarification.
-- `2` — reusable source of truth with boundaries and authority clear.
+- `0`: missing or too vague to use safely.
+- `1`: partially usable but requires deal-by-deal clarification.
+- `2`: reusable source of truth with boundaries and authority clear.
 
 ## Domains
 
@@ -21,14 +21,15 @@ Score each domain from 0–2.
 
 ## Readiness
 
-- **17–20:** configured — safe for mostly autonomous proposal generation.
-- **13–16:** usable with gaps — runtime may proceed but must surface unresolved items.
-- **8–12:** draft — inquiry should continue before high-stakes proposals.
-- **0–7:** insufficient — do not package as autonomous runtime.
+A numeric score alone is not enough to earn `configured`.
 
-## Severity for `profile-gaps.md`
+- **Configured**: 17 to 20, no domain at 0, and every critical domain below is at 2.
+- **Usable with gaps**: 13 to 16 with no completely empty domain.
+- **Draft**: 8 to 12, or a higher score with a material critical gap.
+- **Insufficient**: 0 to 7.
 
-- **Critical:** can cause wrong price, scope, claim, contract term, or brand misuse.
-- **High:** can materially weaken positioning or buying logic.
-- **Medium:** reduces consistency or requires repetitive clarification.
-- **Low:** aesthetic or workflow preference with safe fallback.
+Critical domains are business identity, offer architecture, offer boundaries/dependencies, pricing/discount authority, proof/claim governance, and commercial terms/validity.
+
+This prevents three missing critical domains from being hidden by seven perfect domains.
+
+Autonomous proposal release still requires the profile validator to pass with `status: configured`; readiness scoring does not replace deterministic validation.

@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "level": "production-ready",
+  "scope": "Reusable business configuration plus generation, validation, rendering, and QA of B2B and enterprise proposal artifacts.",
+  "autonomous_envelope": "Generate and validate proposal artifacts from a configured, hash-bound business profile with no unresolved fields. External sending or publishing is outside this envelope and requires separate external-write controls.",
+  "controls": {
+    "source_of_truth": {"status": "implemented", "evidence": ["SKILL.md", "references/state-machine.md", "references/orchestration-contract.md"]},
+    "uncertainty_handling": {"status": "implemented", "evidence": ["references/release-modes.md", "internal-skills/minmax-enterprise-proposal/references/claim-evidence-policy.md"]},
+    "fail_closed": {"status": "implemented", "evidence": ["references/release-modes.md", "internal-skills/minmax-enterprise-proposal/scripts/validate_proposal.py"]},
+    "deterministic_validation": {"status": "implemented", "evidence": ["internal-skills/minmax-enterprise-proposal/scripts/validate_profile.py", "internal-skills/minmax-enterprise-proposal/scripts/validate_proposal.py", "internal-skills/minmax-enterprise-proposal/scripts/preflight_proposal.py", "scripts/validate_bundle.py"]},
+    "side_effect_safety": {"status": "implemented", "evidence": ["references/release-modes.md", "SKILL.md"]},
+    "idempotency": {"status": "not_applicable", "reason": "The autonomous envelope ends at local proposal artifact generation and validation; external writes are not authorized by this skill."},
+    "postcondition_verification": {"status": "implemented", "evidence": ["internal-skills/minmax-enterprise-proposal/scripts/preflight_proposal.py", "internal-skills/minmax-enterprise-proposal/references/quality-gates.md"]},
+    "rollback_or_compensation": {"status": "not_applicable", "reason": "The autonomous envelope produces local replaceable artifacts and does not perform irreversible external mutations."},
+    "untrusted_input_boundary": {"status": "implemented", "evidence": ["internal-skills/minmax-enterprise-proposal/INSTRUCTIONS.md", "internal-skills/minmax-proposal-inquiry/INSTRUCTIONS.md"]},
+    "concurrency_control": {"status": "not_applicable", "reason": "This skill does not authorize concurrent external mutations; callers own output-path locking if multiple proposal jobs write to the same local path."},
+    "auditability": {"status": "implemented", "evidence": ["references/release-modes.md", "internal-skills/minmax-enterprise-proposal/references/proposal-data-schema.md"]},
+    "termination_budgets": {"status": "implemented", "evidence": ["SKILL.md"]},
+    "regression_tests": {"status": "implemented", "evidence": ["tests/test_reliability.py"]}
+  },
+  "tests": ["tests/test_reliability.py"],
+  "limitations": ["Autonomous client release requires a separate browser/PDF/screenshot visual QA mechanism; static HTML checks alone are not treated as proof of no overflow or clipping.","Sending, publishing, CRM updates, or other external writes are outside this skill's autonomous envelope."]
+}

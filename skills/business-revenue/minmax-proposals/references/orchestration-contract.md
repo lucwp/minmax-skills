@@ -11,32 +11,15 @@ It contains two private internal skills:
 
 The user must not install or invoke them separately.
 
-## Internal Skill A — minmax-proposal-inquiry
+## Internal Skill A: minmax-proposal-inquiry
 
-Own reusable configuration:
-
-- business identity;
-- offer architecture;
-- positioning and buyer logic;
-- pricing and commercial rules;
-- evidence and claim permissions;
-- brand assets and visual tokens;
-- voice and proposal workflow defaults.
+Own reusable configuration: business identity; offer architecture; positioning and buyer logic; pricing and commercial rules; evidence and claim permissions; brand assets and visual tokens; voice and proposal workflow defaults.
 
 Its successful terminal state is an updated and validated internal Enterprise Proposal configuration.
 
-## Internal Skill B — minmax-enterprise-proposal
+## Internal Skill B: minmax-enterprise-proposal
 
-Own deal execution:
-
-- deal brief;
-- commercial thesis;
-- recommendation;
-- proposal narrative;
-- scope architecture;
-- investment presentation;
-- structured proposal data;
-- HTML rendering and QA.
+Own deal execution: deal brief; commercial thesis; recommendation; proposal narrative; scope architecture; investment presentation; structured proposal data; HTML rendering and QA.
 
 It must not redefine reusable business configuration during ordinary proposal work.
 
@@ -55,11 +38,21 @@ Whenever Inquiry changes reusable configuration, it must:
 
 1. validate the working profile;
 2. update the internal Enterprise Proposal profile and approved brand assets;
-3. increment configuration metadata;
-4. run the Enterprise Proposal profile validator;
-5. validate the one-package bundle;
-6. if persistence is immutable, package a replacement **root `minmax-proposals/skill.zip`**, never a standalone worker ZIP.
+3. reject unsupported or oversized brand assets;
+4. increment configuration metadata;
+5. record the SHA-256 of the compiled business profile;
+6. run the Enterprise Proposal profile validator;
+7. validate the one-package bundle;
+8. if persistence is immutable, package a replacement root `minmax-proposals/skill.zip`, never a standalone worker ZIP.
 
 ## Staleness rule
 
 Any proposal generated after a reusable configuration change must use the updated internal worker. Do not generate from a pre-update profile.
+
+For autonomous release, proposal metadata must bind to the current `configuration_revision`, and the current profile hash must match `configuration-state.json`.
+
+## Release rule
+
+Read `references/release-modes.md` before proposal production.
+
+The proposal skill may autonomously generate and validate an artifact only inside the `autonomous` release gate. Sending, publishing, or mutating an external system is downstream and requires separate external-write guardrails.
