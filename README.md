@@ -49,7 +49,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 <!-- SKILL_CATALOG:START -->
 ## Skill catalog
 
-**3 public skills** across **3 categories**.
+**4 public skills** across **3 categories**.
 
 ### Orchestration & Agents
 
@@ -61,6 +61,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 
 | Skill | What it does |
 | --- | --- |
+| [MinMax Consulting Giga Brain](skills/business-revenue/minmax-consulting-gigabrain/) | >- |
 | [MinMax Proposals](skills/business-revenue/minmax-proposals/) | Orchestrate a complete enterprise proposal system inside one MinMax skill package. Use when a user wants to configure a business for reusable proposal generation, update offers/... |
 
 ### Artifact Workflows
