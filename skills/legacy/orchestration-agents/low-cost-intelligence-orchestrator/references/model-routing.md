@@ -27,6 +27,16 @@ Use **Luna xhigh** only when the planning/node complexity plausibly benefits fro
 
 Do not use xhigh merely because the overall user request is large.
 
+### Exceptional Luna-family depth escalation
+Use **Luna max** only for a narrow planning/reasoning node when all are true:
+1. Luna xhigh was observably insufficient or the node has an unusually high depth requirement;
+2. missing context, scope, tools, and validation were already repaired;
+3. the node is bounded and does not require broad workflow-wide reflection;
+4. the runtime can enforce a hard timeout/cancel boundary;
+5. the expected reduction in rework or family escalation justifies the added reasoning cost.
+
+Luna max is an exception, not a default worker tier. Do not fan it out across multiple routine workers.
+
 ### Capability / coordination escalation
 Use **Terra xhigh** only after:
 1. missing context was repaired;
@@ -42,7 +52,7 @@ Prefer high before xhigh unless the unresolved ambiguity is central.
 
 ## Prohibited
 
-Never request `max` reasoning effort.
+Never request Terra `max` or Sol `max`. Luna `max` is permitted only under the bounded exception above.
 
 Never use a premium model for:
 - deterministic arithmetic;
@@ -57,8 +67,14 @@ Never use a premium model for:
 - **Assignment failure:** rewrite/narrow the worker contract.
 - **Tool failure:** use/fix the correct tool.
 - **Validation failure:** improve the check.
-- **Reasoning ceiling:** increase reasoning or model family for that node.
-- **Judgment risk:** use a narrow senior critic.
+- **Reasoning depth ceiling on a narrow node:** consider Luna xhigh, then Luna max only under the bounded exception above.
+- **Capability/coordination ceiling:** use Terra xhigh for that node/workstream.
+- **Judgment risk:** use a narrow Sol high/xhigh critic.
+
+Preferred escalation logic:
+`Luna high -> Luna xhigh -> Luna max only for bounded depth -> Terra xhigh for capability/coordination -> Sol high/xhigh only for high-consequence judgment`
+
+Do not climb this ladder mechanically; escalate only the load-bearing node and stop at the cheapest tier that passes validation.
 
 ## Runtime Truthfulness
 

@@ -1,3 +1,8 @@
+---
+name: low-cost-intelligence-orchestrator
+description: "Workspace-level manager/orchestrator for cost-effective planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial work direct; plan bounded work compactly; delegate only when parallelism, context isolation, specialist capability, rework prevention, or risk reduction clearly justifies the extra calls. Keep the root agent in control, minimize context transfer, schedule only meaningful dependencies, synthesize centrally, verify selectively, and recover only on explicit failure/stall. Prefer Luna high for normal workers, Luna xhigh for genuinely complex planning/hard nodes, and allow Luna max only as an exceptional narrow escalation when xhigh is insufficient and the call is externally bounded. Use Terra xhigh only for demonstrated capability/coordination gaps and Sol high/xhigh only for narrow high-consequence judgment. Never use Terra max or Sol max. Enforce finite turns/timeouts and prevent recursive orchestration."
+---
+
 # Low-Cost Intelligence Orchestrator
 
 **Author:** Lucas W. Portella
@@ -26,7 +31,7 @@ Do not add agentic structure unless it improves this ratio. Do not add planning,
 8. Use the cheapest reliable verification path before adding a verifier agent.
 9. Escalate only the failed/load-bearing node, not the entire workflow.
 10. Every agentic loop must have finite turns, retries, recursion depth, and time budgets.
-11. Never use `max` reasoning effort.
+11. Never use Terra `max` or Sol `max`. Luna `max` is allowed only as a narrow, externally bounded escalation; never as a default.
 12. Never claim a model, tool, timeout, worker, or validation ran unless the runtime actually executed it.
 13. Do not recursively audit or re-justify the orchestration strategy during healthy execution.
 
@@ -108,12 +113,13 @@ Use model capability per node, not per project prestige:
 - **Current/root or Luna medium/high:** trivial, mechanical, cheaply verified work.
 - **Luna high:** normal substantive worker and bounded execution default.
 - **Luna xhigh:** genuinely complex planning or a hard bounded reasoning node.
+- **Luna max:** exceptional escalation for one narrow Luna-family planning/reasoning node when xhigh is observably insufficient, the expected value justifies extra reasoning, and the runtime can enforce a hard timeout/cancel boundary.
 - **Terra xhigh:** demonstrated capability/coordination ceiling after context/scope repair.
 - **Sol high/xhigh:** narrow high-consequence judgment or senior criticism.
 
-Never use `max`.
+Never use Terra `max` or Sol `max`. Do not use Luna `max` for routine work, broad workflows, open-ended reflection, or as a prestige default.
 
-Before escalation, determine whether the problem is missing context, bad scope, tool failure, validation failure, actual reasoning ceiling, or unresolved high-consequence judgment. Fix the cheaper failure mode first.
+Before escalation, determine whether the problem is missing context, bad scope, tool failure, validation failure, actual reasoning ceiling, capability/coordination ceiling, or unresolved high-consequence judgment. Fix the cheaper failure mode first. Prefer Luna max over a family jump only when the bottleneck is depth on a narrow node and the bounded extra reasoning is expected to cost less than rework or escalation.
 
 Load `references/model-routing.md` for escalation details.
 

@@ -52,5 +52,7 @@ Therefore, when no watchdog exists:
 - avoid open-ended planner prompts;
 - prefer one-shot structured outputs;
 - narrow xhigh calls;
+- do not use Luna max unless the runtime can enforce a hard timeout/cancel boundary;
+- keep any Luna max call single-node and one-shot rather than reflective or recursive;
 - do not ask the model to "keep thinking until solved";
 - surface a partial result rather than creating an unbounded loop.
