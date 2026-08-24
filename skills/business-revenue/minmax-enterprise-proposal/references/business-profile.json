@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "status": "template",
+  "business": {"name":"[CONFIGURE WITH minmax-proposal-inquiry]","legal_name":"","website":"","category":"","one_liner":"","markets":[],"languages":["en"],"default_currency":"USD","proposal_issuer":{"name":"","title":"","email":""}},
+  "positioning": {"ideal_customers":[],"poor_fit_customers":[],"buyer_roles":[],"trigger_events":[],"core_problems":[],"value_proposition":"","competitive_alternatives":[],"differentiators":[],"objections":[],"decision_criteria":[],"preferred_framing":[],"avoid_framing":[]},
+  "offers": [],
+  "commercial": {"default_payment_terms":"[TO DEFINE]","proposal_validity_days":30,"tax_notes":"[TO DEFINE]","discount_policy":"[TO DEFINE]","scope_change_policy":"[TO DEFINE]","scenario_policy":{"mode":"only_when_materially_distinct","recommended_label":"Recommended","minimum_label":"Focused","expanded_label":"Expanded"}},
+  "proof": {"metrics":[],"case_studies":[],"testimonials":[],"customer_logos":[]},
+  "brand": {"logo_path":"","primary_color":"#111827","accent_color":"#2563EB","background_color":"#F8FAFC","surface_color":"#FFFFFF","text_color":"#111827","muted_color":"#64748B","font_display":"Inter, ui-sans-serif, system-ui, sans-serif","font_body":"Inter, ui-sans-serif, system-ui, sans-serif","border_radius_px":18,"visual_style":["minimal","editorial","decision-oriented"],"image_style":"Use imagery only when it adds meaning.","cover_image_path":"","footer_text":"","confidentiality_label":"Confidential"},
+  "voice": {"default_language":"en","tone":["clear","commercial","specific"],"preferred_terms":[],"banned_terms":[],"claim_policy":"Use only supported claims and label estimates or assumptions explicitly."},
+  "proposal_defaults": {"page_size":"A4-landscape","include_about_us":false,"approval_mode":"thesis_first","generate_email":"on_request","default_next_step":"Confirm scope, commercial terms, and contracting path."}
+}

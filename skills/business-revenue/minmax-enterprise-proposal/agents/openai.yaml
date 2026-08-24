@@ -1,0 +1,5 @@
+interface:
+  display_name: "Minmax Enterprise Proposal"
+  short_description: "Create decision-grade branded commercial proposals."
+  icon: "assets/icon.svg"
+  brand_color: "#111827"

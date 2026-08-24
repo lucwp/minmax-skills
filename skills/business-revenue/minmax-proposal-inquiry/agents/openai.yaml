@@ -1,0 +1,5 @@
+interface:
+  display_name: "Minmax Proposal Inquiry"
+  short_description: "Configure offers, pricing, proof, voice, and brand for proposals."
+  icon: "assets/icon.svg"
+  brand_color: "#2563EB"
