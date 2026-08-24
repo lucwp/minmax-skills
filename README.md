@@ -87,7 +87,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 
 | Skill | What it does |
 | --- | --- |
-| [Low-Cost Intelligence Orchestrator](skills/orchestration-agents/low-cost-intelligence-orchestrator/) | Use this skill as a lightweight manager-style control plane. The root agent owns the user conversation, global objective, approvals, cross-workstream synthesis, and final claim. |
+| [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/) | Workspace-level manager/orchestrator for cost-effective planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial work direct; plan boun... |
 
 ### Business & Revenue
 
