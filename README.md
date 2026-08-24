@@ -8,7 +8,7 @@ Unless a specific skill explicitly states otherwise, the skills in this reposito
 
 ## Repository structure
 
-Active skills are organized by **type first**, then by skill name. Superseded skills that were fully replaced live outside the active catalog under `legacy/`.
+Active skills are organized by **type first**, then by skill name. Superseded skills that were fully replaced remain inside `skills/`, under the dedicated `skills/legacy/` archive.
 
 ```text
 public-skills/
@@ -29,11 +29,11 @@ public-skills/
 │   │   └── <active-skill-name>/
 │   ├── career/
 │   │   └── <active-skill-name>/
-│   └── artifact-workflows/
-│       └── <active-skill-name>/
-├── legacy/
-│   └── <category>/
-│       └── <superseded-skill-name>/
+│   ├── artifact-workflows/
+│   │   └── <active-skill-name>/
+│   └── legacy/
+│       └── <category>/
+│           └── <superseded-skill-name>/
 ├── scripts/
 │   └── update_readme.py
 └── .github/workflows/
@@ -77,13 +77,13 @@ Do not place credentials, `.env` files, private keys, customer data, or propriet
 
 ## Replacements and legacy
 
-Normal improvements update the existing active skill in place. When one skill is a **complete replacement** for another, the replacement becomes the only active version under `skills/` and the superseded skill is archived under `legacy/<category>/<old-skill-name>/`.
+Normal improvements update the existing active skill in place. When one skill is a **complete replacement** for another, the replacement becomes the only active version under its category and the superseded skill is archived under `skills/legacy/<category>/<old-skill-name>/`.
 
-`legacy/` is historical only: it is excluded from the active skill catalog and should not be treated as the version to install. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the replacement criteria and maintenance rules.
+`skills/legacy/` is historical only. It is excluded from the active skill catalog by folder depth and should not be treated as the version to install. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the replacement criteria and maintenance rules.
 
 ## Automatic catalog
 
-The catalog below is generated automatically from every `SKILL.md` under `skills/`.
+The catalog below is generated automatically from active skill paths shaped as `skills/<category>/<skill-name>/SKILL.md`.
 
 When a skill is added, removed, renamed, or updated on `main`, GitHub Actions runs `scripts/update_readme.py` and commits an updated catalog when necessary. **Do not manually edit the generated section.**
 
@@ -110,8 +110,8 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 
 ## Using a skill
 
-Copy the complete skill directory into the skills directory used by your agent runtime, then follow the runtime-specific installation rules. Keep the full folder together because `SKILL.md` may progressively load files from `references/`, `assets/`, or `scripts/`.
+Copy the complete active skill directory into the skills directory used by your agent runtime, then follow the runtime-specific installation rules. Keep the full folder together because `SKILL.md` may progressively load files from `references/`, `assets/`, or `scripts/`.
 
 ## Contributing and maintenance
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the folder taxonomy, replacement/legacy policy, and publishing checklist. The active catalog is maintained automatically from `skills/` only.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the folder taxonomy, replacement/legacy policy, and publishing checklist. The active catalog indexes only canonical skills and ignores `skills/legacy/`.
