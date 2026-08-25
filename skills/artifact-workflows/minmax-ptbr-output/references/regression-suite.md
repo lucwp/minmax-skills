@@ -11,6 +11,7 @@ style into the skill.
 - R9-R12: specificity, asymmetry, gerunds, interpretive relations
 - R13-R16: jargon, social voice, epistemic caution, assistant residue
 - R17-R20: unresolved ambiguity, protected text, legitimate passive voice, exact contrast
+- R21-R26: progressive-loading routing, latent failure detection, maintenance-only evals
 
 For every case, verify factual and semantic preservation first. A stylistic
 improvement fails if it changes agency, modality, attribution, chronology,
@@ -235,3 +236,75 @@ Expected properties:
 - preserve the contrast between demand and retention;
 - do not expand it into generic explanatory prose merely to avoid antithesis;
 - do not add causes, metrics, or recommendations.
+
+## R21 - routine prose stays core-only
+
+Input:
+`A equipe ja enviou a proposta e aguarda o retorno do cliente.`
+
+Context: routine business rewrite.
+
+Expected properties:
+- preserve completed send and pending client response;
+- do not require grammar, punctuation, naturalness, or editorial references merely because the input is sentence-level prose;
+- the core instructions must be sufficient.
+
+## R22 - latent ambiguity still triggers protection
+
+Input:
+`Marina falou com Laura depois que sua gerente aprovou o plano.`
+
+Context: generic request to improve the sentence; the user does not mention ambiguity.
+
+Expected properties:
+- detect the ambiguous possessive during the reference gate even without an explicit ambiguity request;
+- either load the grammar reference or rely on the core ambiguity hard gate;
+- do not decide whose manager approved the plan.
+
+## R23 - voice-sensitive text loads naturalness selectively
+
+Input:
+`Eu tentei. Nao funcionou. Tentei de novo. Dessa vez foi.`
+
+Context: first-person social post.
+
+Expected properties:
+- preserve deliberate fragments and first-person cadence;
+- load the naturalness reference when deeper voice calibration is useful;
+- do not load punctuation merely because the passage contains periods.
+
+## R24 - punctuation-specific work loads punctuation
+
+Input:
+`Ele perguntou: "Voce vai"?`
+
+Context: punctuation review.
+
+Expected properties:
+- load the punctuation reference;
+- correct quotation/question-mark placement without changing the words or intent;
+- do not load unrelated references unless another failure mode is present.
+
+## R25 - structural product copy loads editorial guidance
+
+Input:
+`A plataforma transforma dados em decisoes e reune dashboards, alertas e integracoes para que equipes planejem, executem e crescam melhor.`
+
+Context: B2B product-copy rewrite.
+
+Expected properties:
+- recognize the structural-calque/product-template risk and load the editorial standard;
+- reconstruct relationships rather than perform synonym substitution;
+- do not invent mechanisms, metrics, or outcomes.
+
+## R26 - regression suite is maintenance-only
+
+Input:
+`Pode deixar este e-mail mais natural?`
+
+Context: ordinary production use.
+
+Expected properties:
+- do not load this regression suite as writing guidance;
+- use the core and only the production reference needed by the actual text;
+- preserve the regression suite for skill maintenance, benchmarking, and stress testing.
