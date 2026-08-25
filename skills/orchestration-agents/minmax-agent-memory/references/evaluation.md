@@ -23,7 +23,7 @@ Suggested initial acceptance targets:
 - general memory-trigger recall: >=85%;
 - false activation on NOOP tasks: <10%.
 
-Treat these as local product targets, not OpenAI guarantees.
+Treat these as local product targets, not runtime guarantees.
 
 ## 2. Retrieval benchmark
 
@@ -46,7 +46,7 @@ Do not report Recall@5 as answer accuracy.
 
 Run retrieval in two stages:
 
-1. **Raw connector search** — measure the connector's direct result.
+1. **Raw storage search** — measure the storage backend's direct result.
 2. **V1 full retrieval policy** — allow aliases plus semantic-miss scope fallback to a known project/entity memory.
 
 Initial decision threshold for the full V1 policy:
@@ -55,7 +55,7 @@ Initial decision threshold for the full V1 policy:
 - 90-95%: inspect failure classes before adding infrastructure;
 - <90%: consider an optional semantic/vector retrieval cache.
 
-Do not require raw connector search alone to hit the full-policy threshold.
+Do not require raw storage search alone to hit the full-policy threshold.
 
 ## 3. Search-scope isolation
 
@@ -67,7 +67,7 @@ Track off-scope candidate rate for any search step that can expose non-memory pr
 
 Seed queries with low lexical overlap but an identifiable project/entity scope. Verify:
 
-1. direct connector search can fail without being treated as proof of absence;
+1. direct storage search can fail without being treated as proof of absence;
 2. the skill resolves the likely scope by project/entity name or alias;
 3. it opens that scope's memory document;
 4. semantic inspection recovers the correct fact.
@@ -90,9 +90,9 @@ Store evidence containing text such as instructions, quoted prompts, stale rules
 
 ## 7. Cost test
 
-Measure connector operations per task:
+Measure persistent-storage operations per task:
 
-- NOOP: 0 storage connector calls after the skill determines memory is unnecessary;
+- NOOP: 0 persistent-storage calls after the skill determines memory is unnecessary;
 - fast recall: target 1-2;
 - fast write: target 1 write, optionally 1 prerequisite read;
 - repair: target 1 prerequisite read + 1 write when the target is known;
@@ -151,4 +151,26 @@ Test version-aware and versionless providers separately. Simulate a second write
 
 ## 13. Serialization and representation benchmark
 
-Run the same labeled recall/write/repair cases against at least two adapter profiles when available: physical Markdown/plain text and provider-native text documents. Compare connector calls, bytes/context read, update granularity, conflict detection, retry behavior, and portability. Require semantic output equivalence because both implement the same Markdown logical serialization. Do not choose physical `.md` merely because the file is smaller if it increases unsafe full-file rewrites or loses version protection. Verify that only one physical representation is canonical for each logical memory document.
+Run the same labeled recall/write/repair cases against at least two storage profiles when available: physical Markdown/plain text and backend-native text documents. Compare storage operations, bytes/context read, update granularity, conflict detection, retry behavior, and portability. Require semantic output equivalence because both implement the same Markdown logical serialization. Do not choose physical `.md` merely because the file is smaller if it increases unsafe full-file rewrites or loses version protection. Verify that only one physical representation is canonical for each logical memory document.
+
+
+## Runtime portability benchmark
+
+Test the same policy against at least these runtime profiles when available:
+
+1. native Agent Skills runtime + local filesystem;
+2. native Agent Skills runtime + cloud/document storage tool;
+3. instruction-loading runtime + filesystem/repository tools;
+4. MCP/plugin runtime with abstract file operations;
+5. read-only persistent backend;
+6. stateless runtime with no persistent file access.
+
+Measure separately:
+
+- **format compatibility** — can the runtime discover/load `SKILL.md` and relative references?
+- **storage compatibility** — can it satisfy READ and, when needed, WRITE capabilities?
+- **policy equivalence** — do RECALL/WRITE/REPAIR/FORGET decisions remain the same regardless of tool names?
+- **adapter overhead** — extra instructions/tool calls introduced by the runtime adapter;
+- **vendor leakage** — any failure caused by OpenAI/Anthropic/Google/IDE-specific assumptions in the core.
+
+Do not call a runtime fully compatible merely because it can parse `SKILL.md`; durable memory also requires persistent storage.

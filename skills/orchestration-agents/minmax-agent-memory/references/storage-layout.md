@@ -1,6 +1,6 @@
 # Provider-neutral Markdown storage model
 
-Use the same shallow logical Markdown structure on any compatible file/cloud-storage provider. Markdown is the canonical serialization. Physical storage may be a real `.md` file or a provider-native text document when the native representation has materially better edit/version semantics.
+Use the same shallow logical Markdown structure on any compatible persistent storage backend, including filesystems, repositories, MCP/file services, object stores, and cloud drives. Markdown is the canonical serialization. Physical storage may be a real `.md` file or a provider-native text document when the native representation has materially better edit/version semantics.
 
 ```text
 MinMax Agent Memory/
@@ -22,11 +22,11 @@ MinMax Agent Memory/
 
 ## Logical serialization vs physical representation
 
-The names above are logical Markdown paths. An adapter may map them to provider-native text documents when that is the safer/faster representation. Example: a native Google Doc titled `MEMORY` may implement logical `Core/MEMORY.md`; a filesystem or object-storage connector should normally use the literal `MEMORY.md`.
+The names above are logical Markdown paths. An adapter may map them to backend-native text documents when that is the safer/faster representation. Example: a native Google Doc titled `MEMORY` may implement logical `Core/MEMORY.md`; a filesystem, repository, or object-storage backend should normally use the literal `MEMORY.md`.
 
 Selection rules:
 
-- use physical `.md` when the connector can read/update text efficiently and provides adequate concurrency protection;
+- use physical `.md` when the storage backend can read/update text efficiently and provides adequate concurrency protection;
 - use native text documents when they provide materially better patching or version/CAS behavior than raw-file replacement;
 - if capability is equivalent, prefer `.md` for portability;
 - never keep `.md` and native mirrors as co-equal canonical copies;
@@ -40,7 +40,7 @@ Canonical root: `MinMax Agent Memory`.
 
 Legacy alias: `AI Memory`. If a legacy root already exists, reuse it as the same store and rename it to the canonical name when safe. Never initialize both names without an explicit migration decision.
 
-If more than one active memory root exists on the same provider or across connected providers, treat that as split-brain. Do not automatically merge histories or alternate writes. A root explicitly marked migrated/archived/inactive is not an active competitor.
+If more than one active memory root exists on the same backend or across connected backends, treat that as split-brain. Do not automatically merge histories or alternate writes. A root explicitly marked migrated/archived/inactive is not an active competitor.
 
 ## Store marker
 
@@ -53,11 +53,11 @@ Store ID: <stable random identifier>
 Status: active
 ```
 
-Use it to distinguish the real store from unrelated same-named folders. When a provider exposes ownership/sharing metadata, combine marker/layout validation with provider trust signals; do not adopt an arbitrary shared/public root solely by name.
+Use it to distinguish the real store from unrelated same-named folders. When a storage backend exposes ownership/sharing metadata, combine marker/layout validation with provider trust signals; do not adopt an arbitrary shared/public root solely by name.
 
 ## Capability mapping
 
-The logical layout assumes folder/file listing and content reads for recall. Writes additionally require file/folder creation and updates. Search improves deep recall but is not mandatory. Delete, revision/version checks, and atomic rename/move are optional safety capabilities. Use native docs, plain text, Markdown, or equivalent provider formats as long as the content stays readable and editable. A read-only active store may serve recall but must not cause automatic creation of a second writable truth store.
+The logical layout assumes folder/file listing and content reads for recall. Writes additionally require file/folder creation and updates. Search improves deep recall but is not mandatory. Delete, revision/version checks, and atomic rename/move are optional safety capabilities. Use native docs, plain text, Markdown, or equivalent backend formats as long as the content stays readable and editable. A read-only active store may serve recall but must not cause automatic creation of a second writable truth store.
 
 ## Core/MEMORY.md
 

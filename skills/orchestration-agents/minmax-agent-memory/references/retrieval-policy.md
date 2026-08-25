@@ -25,9 +25,9 @@ For recurring project/entity memories, use the compact `Retrieval aliases` secti
 
 If scope is unclear, read logical `Core/MEMORY.md` to identify the correct durable memory surface. The map should include a compact active-scope registry with project/entity names plus short descriptors or aliases when useful.
 
-### L3 — connector search
+### L3 — storage search
 
-Use connector search when:
+Use storage search when:
 
 - the expected document is unknown;
 - a paraphrase may not match a known title;
@@ -36,13 +36,13 @@ Use connector search when:
 
 Search with the strongest available anchors: project, entity, decision keyword, approximate date, distinctive terminology, aliases, abbreviations, or prior names. Prefer several compact searches over dumping unrelated content.
 
-Keep searches scoped to `MinMax Agent Memory`, a known memory subfolder, or a known project/entity folder whenever the connector permits. Avoid unconstrained whole-connector search as a normal memory path: unrelated documents can dominate results and create unnecessary exposure and context noise. If scoped or recursive search is unavailable, use logical `Core/MEMORY.md` plus folder listing and direct reads to narrow candidate discovery before any broad search. If listing is paginated, continue within the narrow folder until the target is found or that folder is exhausted; do not page the whole provider.
+Keep searches scoped to `MinMax Agent Memory`, a known memory subfolder, or a known project/entity folder whenever the storage backend permits. Avoid unconstrained whole-storage search as a normal memory path: unrelated documents can dominate results and create unnecessary exposure and context noise. If scoped or recursive search is unavailable, use logical `Core/MEMORY.md` plus folder listing and direct reads to narrow candidate discovery before any broad search. If listing is paginated, continue within the narrow folder until the target is found or that folder is exhausted; do not page the whole provider.
 
-Do not assume connector search is semantic retrieval. It can miss meaning-preserving paraphrases with weak lexical overlap.
+Do not assume storage search is semantic retrieval. It can miss meaning-preserving paraphrases with weak lexical overlap.
 
 ### Semantic-miss fallback
 
-If the query is plausibly about known durable context but connector search returns no useful result:
+If the query is plausibly about known durable context but storage search returns no useful result:
 
 1. Do not conclude that no memory exists.
 2. Identify the most likely scope from the current conversation, logical `Core/MEMORY.md`, known project/entity names, aliases, or distinctive context.
@@ -101,7 +101,7 @@ Normal recall should inject only the small relevant passage/document. Avoid copy
 
 ## Vector-search boundary
 
-This V1 does not include a vector database. Connector retrieval plus structured scopes, bounded aliases, and scope fallback are the available retrieval layer. If measured Recall@5 remains below the accepted threshold after aliasing and scope fallback are evaluated, add a semantic index later as an optional rebuildable cache; do not claim it exists before implementation.
+This V1 does not include a vector database. Storage retrieval plus structured scopes, bounded aliases, and scope fallback are the available retrieval layer. If measured Recall@5 remains below the accepted threshold after aliasing and scope fallback are evaluated, add a semantic index later as an optional rebuildable cache; do not claim it exists before implementation.
 
 
 ## Serialization neutrality

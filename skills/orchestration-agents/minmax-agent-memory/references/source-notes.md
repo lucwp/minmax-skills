@@ -2,6 +2,20 @@
 
 Use primary/official sources first. These notes explain which ideas are borrowed and which claims must not be overstated.
 
+## Agent Skills open standard
+
+Authoritative specification:
+https://agentskills.io/specification
+
+Relevant points:
+
+- The portable core is a directory containing `SKILL.md` with required `name` and `description` frontmatter.
+- `scripts/`, `references/`, `assets/`, and additional files/directories are optional.
+- Agents should load metadata first, `SKILL.md` on activation, and supporting resources only as needed.
+- Runtime/tool support can differ; vendor-specific metadata must not become a core prerequisite.
+
+OpenAI separately documents that its Skills follow the Agent Skills open standard and are supported across ChatGPT, Codex, and API surfaces. Treat that as one implementation of the open format, not the definition of the format itself.
+
 ## OpenAI Skills
 
 Source: OpenAI Help Center, “Skills in ChatGPT”
@@ -11,7 +25,7 @@ Relevant points:
 
 - Skills are reusable workflows with instructions, examples, and optional code.
 - After installation, ChatGPT can automatically use one or more Skills when helpful.
-- This supports making memory an independent Skill rather than coupling it to the orchestrator.
+- This supports making memory an independent Skill rather than coupling it to the orchestrator, while the open standard keeps the core portable across compatible runtimes.
 - OpenAI does not publish a trigger-recall SLA; do not claim automatic invocation is guaranteed.
 
 ## OpenAI skill-authoring guidance
