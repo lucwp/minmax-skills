@@ -1,19 +1,14 @@
 name: Reliability gates
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'skills/**'
-      - 'RELIABILITY.md'
-      - 'scripts/validate_reliability.py'
-      - '.github/workflows/reliability-gates.yml'
+  workflow_dispatch:
   pull_request:
     paths:
-      - 'skills/**'
       - 'RELIABILITY.md'
       - 'scripts/validate_reliability.py'
       - '.github/workflows/reliability-gates.yml'
+      - 'skills/**/reliability.json'
+      - 'skills/**/tests/**'
 
 permissions:
   contents: read
