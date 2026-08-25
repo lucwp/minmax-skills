@@ -34,6 +34,8 @@ The unit of trust is the autonomous envelope, not the skill name. A proposal gen
 
 `scripts/validate_reliability.py` checks active skills, ignores `skills/legacy/`, validates each `reliability.json`, confirms declared evidence paths exist, and can run regression tests.
 
-CI runs the validator on changes to active skills or reliability policy. A production-ready label should fail CI if declared controls or tests disappear.
+The reliability gate is intentionally not triggered by routine direct pushes to skill content. It runs manually and on pull requests that change the reliability framework, reliability manifests, or declared regression tests. This keeps the certification gate available without turning ordinary repository maintenance into noisy unrelated CI failures.
+
+The generated skill catalog remains independent and may update automatically on normal skill pushes.
 
 Legacy skills are historical snapshots and are not certified under this contract.
