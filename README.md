@@ -49,12 +49,13 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 <!-- SKILL_CATALOG:START -->
 ## Skill catalog
 
-**4 public skills** across **3 categories**.
+**5 public skills** across **3 categories**.
 
 ### Orchestration & Agents
 
 | Skill | What it does |
 | --- | --- |
+| [MinMax Agent Memory](skills/orchestration-agents/minmax-agent-memory/) | Give ChatGPT durable, portable memory across conversations without a dedicated memory backend. Persist compact, human-readable Markdown through any compatible file or cloud-stor... |
 | [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/) | Workspace-level manager/orchestrator for cost-effective, production-minded planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial wor... |
 
 ### Business & Revenue
