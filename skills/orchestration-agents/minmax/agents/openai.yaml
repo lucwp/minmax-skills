@@ -1,0 +1,12 @@
+interface:
+  display_name: "MinMax Package Manager"
+  short_description: Install, review, update, pin, rollback, and sync AI skills safely.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
