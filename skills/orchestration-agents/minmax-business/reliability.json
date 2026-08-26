@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "level": "consulting-ready",
+  "scope": "Read-only orchestration of business analysis, specialist-skill routing, dependency sequencing, evidence-state preservation, conflict resolution, and synthesis across business functions.",
+  "controls": {
+    "source_of_truth": {"status": "implemented", "evidence": ["SKILL.md", "references/DOMAIN-OWNERSHIP.md", "SOURCES.md"]},
+    "uncertainty_handling": {"status": "implemented", "evidence": ["SKILL.md"]},
+    "fail_closed": {"status": "implemented", "evidence": ["SKILL.md"]},
+    "deterministic_validation": {"status": "not_applicable", "reason": "The current autonomous envelope contains routing and synthesis judgment only; it performs no fragile arithmetic, schema mutation, or deterministic external write that requires a validator script."},
+    "side_effect_safety": {"status": "not_applicable", "reason": "This consulting-ready version does not own external side effects; specialist skills and runtime policies remain responsible for any writes or irreversible actions."},
+    "idempotency": {"status": "not_applicable", "reason": "The skill performs no autonomous external writes or persistent mutations."},
+    "postcondition_verification": {"status": "not_applicable", "reason": "The skill does not directly mutate external state; downstream specialists must verify their own postconditions."},
+    "rollback_or_compensation": {"status": "not_applicable", "reason": "The skill does not directly perform reversible or irreversible external mutations."},
+    "untrusted_input_boundary": {"status": "implemented", "evidence": ["SKILL.md"]},
+    "concurrency_control": {"status": "not_applicable", "reason": "Parallelization is limited to independent analytical workstreams; the skill does not coordinate concurrent writes to shared external state."},
+    "auditability": {"status": "implemented", "evidence": ["SKILL.md", "SOURCES.md"]},
+    "termination_budgets": {"status": "implemented", "evidence": ["SKILL.md"]},
+    "regression_tests": {"status": "not_applicable", "reason": "This version is consulting-ready rather than production-ready. Adversarial routing cases are maintained in references/EVALS.md for manual and future automated evaluation."}
+  },
+  "tests": [],
+  "limitations": [
+    "Routing quality depends on the installed specialist skills exposing accurate, non-overlapping descriptions and responsibility boundaries.",
+    "The skill does not itself certify the correctness of specialist domain outputs; it preserves ownership, evidence state, and conflicts and invokes review only when warranted.",
+    "Autonomous external writes are outside this skill's scope and remain governed by the selected specialist skill and runtime policy."
+  ]
+}
