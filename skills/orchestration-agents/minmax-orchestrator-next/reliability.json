@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "level": "production-ready",
+  "scope": "Routing, planning, delegation, verification, approval-gated Loop Mode, bounded autonomous reads, and bounded state-changing workflows.",
+  "autonomous_envelope": "Read-only work and validated bounded writes. Loop Mode execution requires explicit approval of the compiled contract. Autonomous external writes require separate explicit preauthorization and limits. Irreversible/high-consequence actions remain human-gated.",
+  "controls": {
+    "source_of_truth": {"status": "implemented", "evidence": ["SKILL.md", "references/planning-engine.md", "references/loop-mode.md"]},
+    "uncertainty_handling": {"status": "implemented", "evidence": ["references/assignment-contracts.md", "references/loop-mode.md"]},
+    "fail_closed": {"status": "implemented", "evidence": ["references/production-safety.md", "references/termination-budgets.md", "references/loop-mode.md"]},
+    "deterministic_validation": {"status": "implemented", "evidence": ["scripts/validate_action_manifest.py", "scripts/validate_loop_contract.py"]},
+    "side_effect_safety": {"status": "implemented", "evidence": ["references/production-safety.md", "references/action-manifest-schema.md", "references/loop-mode.md"]},
+    "idempotency": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "postcondition_verification": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py", "references/loop-mode.md"]},
+    "rollback_or_compensation": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "untrusted_input_boundary": {"status": "implemented", "evidence": ["references/production-safety.md"]},
+    "concurrency_control": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "auditability": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
+    "termination_budgets": {"status": "implemented", "evidence": ["references/termination-budgets.md", "references/loop-mode.md", "scripts/validate_loop_contract.py"]},
+    "regression_tests": {"status": "implemented", "evidence": ["tests/test_action_manifest.py", "tests/test_loop_mode_contract.py"]}
+  },
+  "tests": ["tests/test_action_manifest.py", "tests/test_loop_mode_contract.py"],
+  "limitations": [
+    "The skill cannot provide cancellation, transactionality, locking, or idempotency when the runtime/target does not expose those primitives.",
+    "Behavioral activation remains instruction-driven; regression tests validate the contract text and deterministic contract validators, not every host runtime's skill router.",
+    "Irreversible/high-consequence actions are intentionally outside the autonomous envelope."
+  ]
+}

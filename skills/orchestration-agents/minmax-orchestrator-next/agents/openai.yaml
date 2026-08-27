@@ -1,0 +1,3 @@
+interface:
+  display_name: "MinMax Orchestrator NEXT"
+  short_description: "Approval-gated planning, delegation, verification, and Loop Mode orchestration."
