@@ -1,0 +1,24 @@
+name: MinMax base export
+
+on:
+  push:
+    branches:
+      - minmax-persistence-backend-update
+    paths:
+      - '.github/workflows/minmax-base-export.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: minmax-base-package
+          path: skills/orchestration-agents/minmax
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
