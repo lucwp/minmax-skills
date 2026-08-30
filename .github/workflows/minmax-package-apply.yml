@@ -1,0 +1,41 @@
+name: MinMax package apply
+
+on:
+  push:
+    branches:
+      - minmax-persistence-backend-update
+    paths:
+      - '.minmax-upload/**'
+      - '.github/workflows/minmax-package-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and install packaged skill
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .minmax-upload/chunk-* > /tmp/skill.zip.b64
+          base64 -d /tmp/skill.zip.b64 > /tmp/skill.zip
+          echo '93c7156a2d5d9edfe1c3ab961624cb4f94acb473e29ecbb90d4744841218bd34  /tmp/skill.zip' | sha256sum -c -
+          rm -rf /tmp/minmax-skill
+          mkdir -p /tmp/minmax-skill
+          unzip -q /tmp/skill.zip -d /tmp/minmax-skill
+          test -f /tmp/minmax-skill/minmax/SKILL.md
+          rm -rf skills/orchestration-agents/minmax
+          mkdir -p skills/orchestration-agents
+          cp -a /tmp/minmax-skill/minmax skills/orchestration-agents/minmax
+          rm -rf .minmax-upload
+          rm -f .github/workflows/minmax-package-apply.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'feat(minmax): add durable private state backend'
+          git push origin HEAD:${GITHUB_REF_NAME}
