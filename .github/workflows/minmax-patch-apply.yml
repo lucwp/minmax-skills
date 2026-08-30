@@ -1,0 +1,49 @@
+name: MinMax verified patch apply
+
+on:
+  push:
+    branches:
+      - minmax-persistence-backend-update
+    paths:
+      - '.minmax-patch/**'
+      - '.github/workflows/minmax-patch-apply.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and apply patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .minmax-patch/patch-* > /tmp/minmax.patch.xz.b64
+          base64 -d /tmp/minmax.patch.xz.b64 > /tmp/minmax.patch.xz
+          echo 'b7491655d5787d2e02a674c840d2af6196cdfa6a6a95b2b71da0671bab7212a7  /tmp/minmax.patch.xz' | sha256sum -c -
+          xz -dc /tmp/minmax.patch.xz > /tmp/minmax.patch
+          cd skills/orchestration-agents/minmax
+          git apply --check /tmp/minmax.patch
+          git apply /tmp/minmax.patch
+          test "$(git hash-object SKILL.md)" = '4ff352c521c89729c9fb66bb74b3bf70cb70dd64'
+          test "$(git hash-object agents/openai.yaml)" = '73dedbc3cdcd7d15292d8a9d187133c1495389de'
+          test "$(git hash-object references/operations.md)" = '8dccff81ae9077da693b81f221c9ad8e06e1efa8'
+          test "$(git hash-object references/security.md)" = 'a91245a9aa817457bc121347769c232e35c6e67e'
+          test "$(git hash-object scripts/minmax.py)" = 'b3f9c59cebcafddf8053bbf22c19f34e07b4edd8'
+          test "$(git hash-object scripts/minmax_engine/config.py)" = '00233450888d11c5e2cf2affe3345fe566045c43'
+          test "$(git hash-object scripts/minmax_engine/state_backend.py)" = 'abd0cf914ce94ef8d686887773f1a0dad11d7aea'
+          test "$(git hash-object scripts/minmax_engine/transactions.py)" = '5cafad4c655ee44c4a3ebc03dfde0c97289f0a57'
+          test "$(git hash-object scripts/minmax_engine/__init__.py)" = '5db944df4b2d953865ec3866ced9d7d2f3f608bc'
+          test "$(git hash-object tests/test_minmax.py)" = '93e8d3d3abf13492a9175a0fd562ddbafa1f425a'
+          cd ../../..
+          rm -rf .minmax-patch .minmax-upload
+          rm -f .github/workflows/minmax-patch-apply.yml .github/workflows/minmax-base-export.yml .github/workflows/minmax-package-apply.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'feat(minmax): add durable private state backend'
+          git push origin HEAD:${GITHUB_REF_NAME}
