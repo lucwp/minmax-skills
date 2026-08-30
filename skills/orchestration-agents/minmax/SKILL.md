@@ -58,7 +58,7 @@ Prefer the cheapest operation that can answer the request.
 1. Resolve the requested source and package boundary.
 2. Inspect/hash it without executing package content.
 3. If writable configured targets exist, plan installation there.
-4. If no writable target exists, plan a user-facing ZIP with `--output <artifact-path>`.
+4. If no writable target exists, plan a user-facing installable ZIP with `--output <artifact-path>`.
 5. Show only package, source, target/delivery destination, risk, requirements if any, and plan ID.
 6. After approval, apply and verify the target or ZIP.
 
@@ -93,6 +93,14 @@ Rollback is source-backed. Reconstruct the historical source/ref and verify the 
 ### Sync/cloud
 
 Sync registry metadata and overlay deltas only. Reconstruct package contents from their registered sources when materializing onto another target/device.
+
+#### Persistent GitHub backend
+
+When the runtime filesystem is ephemeral, use a user-configured private GitHub repository as the durable state backend. Never hardcode a repository identity: each user must select their own private repository during setup. Persist only MinMax metadata (registry/state, source bindings, pins, targets, overlay deltas, and backend marker), never full private package copies.
+
+If local MinMax state is missing on a new runtime, rediscover the configured backend through a MinMax marker file in accessible private repositories, restore the registry, inspect configured targets, and rehydrate missing/drifted packages from registered sources. A write to an ephemeral target is not considered durable success until the updated state is also persisted to the configured backend.
+
+For GitHub-backed persistence, the conversational control plane may use the authenticated GitHub connector to read/write the private state repository when the local CLI cannot reach GitHub directly. Keep deterministic package hashing, review/apply semantics, and target verification in the CLI.
 
 ## Output discipline
 
