@@ -58,7 +58,7 @@ When a skill is added, removed, renamed, or updated on `main`, GitHub Actions ru
 | [MinMax Agent Memory](skills/orchestration-agents/minmax-agent-memory/) | Give AI agents durable, portable memory across sessions without a dedicated memory backend. Persist compact, human-readable Markdown through any compatible filesystem, MCP, file... |
 | [MinMax Business OS](skills/orchestration-agents/minmax-business/) | Orchestrate complex business work across strategy, market intelligence, product, marketing, sales, commercial, partnerships, customer, revenue operations, and business operation... |
 | [MinMax Orchestrator GPT](skills/orchestration-agents/minmax-orchestrator-gpt/) | Workspace-level manager/orchestrator for cost-effective, production-minded planning and delegation. Apply on every input as a lightweight routing control plane: keep trivial wor... |
-| [MinMax Orchestrator NEXT](skills/orchestration-agents/minmax-orchestrator-next/) | Next-generation workspace-level manager/orchestrator for cost-effective planning, delegation, verification, and bounded agentic execution. Apply as a lightweight routing control... |
+| [MinMax Orchestrator NEXT](skills/orchestration-agents/minmax-orchestrator-next/) | Next-generation workspace-level manager/orchestrator for cost-effective planning, delegation, verification, user-visible execution progress, decision-rights control, and bounded... |
 | [MinMax Package Manager](skills/orchestration-agents/minmax/) | Manage compatible AI skills as source-backed packages across GitHub, SkillsMP, GitLab, generic Git, archives, local sources, and multiple agent runtimes. Use when the user says... |
 
 ### Business & Revenue
