@@ -2,26 +2,187 @@
   "schema_version": "1.0",
   "level": "production-ready",
   "scope": "Routing, planning, delegation, verification, approval-gated Loop Mode, bounded autonomous reads, and bounded state-changing workflows.",
-  "autonomous_envelope": "Read-only work and validated bounded writes. Loop Mode execution requires explicit approval of the compiled contract. Autonomous external writes require separate explicit preauthorization and limits. Irreversible/high-consequence actions remain human-gated.",
+  "autonomous_envelope": "Read-only work and validated bounded writes. Loop Mode execution requires explicit approval bound to a root-captured contract digest. Autonomous external writes require a separately root-captured preauthorization reference that matches contract approval metadata and survives checkpoint validation. Irreversible/high-consequence steps remain per-step human-gated.",
   "controls": {
-    "source_of_truth": {"status": "implemented", "evidence": ["SKILL.md", "references/planning-engine.md", "references/loop-mode.md"]},
-    "uncertainty_handling": {"status": "implemented", "evidence": ["references/assignment-contracts.md", "references/loop-mode.md"]},
-    "fail_closed": {"status": "implemented", "evidence": ["references/production-safety.md", "references/termination-budgets.md", "references/loop-mode.md"]},
-    "deterministic_validation": {"status": "implemented", "evidence": ["scripts/validate_action_manifest.py", "scripts/validate_loop_contract.py"]},
-    "side_effect_safety": {"status": "implemented", "evidence": ["references/production-safety.md", "references/action-manifest-schema.md", "references/loop-mode.md"]},
-    "idempotency": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
-    "postcondition_verification": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py", "references/loop-mode.md"]},
-    "rollback_or_compensation": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
-    "untrusted_input_boundary": {"status": "implemented", "evidence": ["references/production-safety.md"]},
-    "concurrency_control": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
-    "auditability": {"status": "implemented", "evidence": ["references/production-safety.md", "scripts/validate_action_manifest.py"]},
-    "termination_budgets": {"status": "implemented", "evidence": ["references/termination-budgets.md", "references/loop-mode.md", "scripts/validate_loop_contract.py"]},
-    "regression_tests": {"status": "implemented", "evidence": ["tests/test_action_manifest.py", "tests/test_loop_mode_contract.py"]}
+    "source_of_truth": {
+      "status": "implemented",
+      "evidence": [
+        "SKILL.md",
+        "references/planning-engine.md",
+        "references/loop-mode.md"
+      ]
+    },
+    "uncertainty_handling": {
+      "status": "implemented",
+      "evidence": [
+        "references/assignment-contracts.md",
+        "references/loop-mode.md"
+      ]
+    },
+    "fail_closed": {
+      "status": "implemented",
+      "evidence": [
+        "references/production-safety.md",
+        "references/termination-budgets.md",
+        "references/loop-mode.md"
+      ]
+    },
+    "contract_identity": {
+      "status": "implemented",
+      "evidence": [
+        "scripts/validate_loop_contract.py",
+        "tests/test_loop_contract_hardening.py"
+      ]
+    },
+    "approval_binding": {
+      "status": "implemented",
+      "evidence": [
+        "references/loop-mode.md",
+        "scripts/validate_loop_contract.py",
+        "tests/test_loop_contract_hardening.py"
+      ]
+    },
+    "checkpoint_integrity": {
+      "status": "implemented",
+      "evidence": [
+        "references/loop-state.md",
+        "scripts/validate_loop_checkpoint.py",
+        "tests/test_loop_checkpoint.py"
+      ]
+    },
+    "deterministic_validation": {
+      "status": "implemented",
+      "evidence": [
+        "scripts/validate_action_manifest.py",
+        "scripts/validate_loop_contract.py",
+        "scripts/validate_loop_checkpoint.py"
+      ]
+    },
+    "side_effect_safety": {
+      "status": "implemented",
+      "evidence": [
+        "references/production-safety.md",
+        "references/action-manifest-schema.md",
+        "references/loop-mode.md"
+      ]
+    },
+    "postcondition_verification": {
+      "status": "implemented",
+      "evidence": [
+        "references/production-safety.md",
+        "scripts/validate_action_manifest.py",
+        "references/loop-mode.md"
+      ]
+    },
+    "proxy_hardening": {
+      "status": "implemented",
+      "evidence": [
+        "references/loop-mode.md",
+        "scripts/validate_loop_contract.py",
+        "tests/test_loop_contract_hardening.py"
+      ]
+    },
+    "termination_budgets": {
+      "status": "implemented",
+      "evidence": [
+        "references/termination-budgets.md",
+        "references/loop-mode.md",
+        "scripts/validate_loop_contract.py"
+      ]
+    },
+    "human_contract_rendering": {
+      "status": "implemented",
+      "evidence": [
+        "references/loop-contract-rendering.md",
+        "scripts/render_loop_contract.py",
+        "tests/test_human_contract_rendering.py",
+        "evals/loop-mode/golden"
+      ]
+    },
+    "behavioral_observation_grading": {
+      "status": "implemented",
+      "evidence": [
+        "scripts/grade_behavioral_observations.py",
+        "tests/test_behavioral_observation_grader.py",
+        "evals/loop-mode/README.md"
+      ]
+    },
+    "regression_tests": {
+      "status": "implemented",
+      "evidence": [
+        "tests/"
+      ]
+    },
+    "external_write_preauthorization_binding": {
+      "status": "implemented",
+      "evidence": [
+        "references/loop-mode.md",
+        "scripts/validate_loop_contract.py",
+        "scripts/validate_loop_checkpoint.py",
+        "tests/test_loop_contract_hardening.py",
+        "tests/test_loop_checkpoint.py"
+      ]
+    },
+    "per_step_high_consequence_gate": {
+      "status": "implemented",
+      "evidence": [
+        "references/loop-mode.md",
+        "scripts/validate_loop_contract.py",
+        "tests/test_loop_contract_hardening.py"
+      ]
+    },
+    "behavioral_suite_completeness": {
+      "status": "implemented",
+      "evidence": [
+        "scripts/grade_behavioral_observations.py",
+        "tests/test_behavioral_observation_grader.py"
+      ]
+    },
+    "user_visible_progress": {
+      "status": "implemented",
+      "evidence": [
+        "SKILL.md",
+        "references/user-interaction-protocol.md",
+        "references/token-economy.md",
+        "tests/test_user_interaction_protocol.py",
+        "evals/interaction/cases.json"
+      ]
+    },
+    "decision_rights": {
+      "status": "implemented",
+      "evidence": [
+        "SKILL.md",
+        "references/user-interaction-protocol.md",
+        "references/assignment-contracts.md",
+        "references/loop-mode.md",
+        "tests/test_interaction_regression_gates.py"
+      ]
+    }
   },
-  "tests": ["tests/test_action_manifest.py", "tests/test_loop_mode_contract.py"],
+  "tests": [
+    "tests/test_action_manifest.py",
+    "tests/test_behavioral_evals.py",
+    "tests/test_behavioral_observation_grader.py",
+    "tests/test_behavioral_spec_strength.py",
+    "tests/test_human_contract_rendering.py",
+    "tests/test_loop_checkpoint.py",
+    "tests/test_loop_clarity.py",
+    "tests/test_loop_contract_hardening.py",
+    "tests/test_loop_mode_contract.py",
+    "tests/test_loop_regression_gates.py",
+    "tests/test_loop_topology.py",
+    "tests/test_user_interaction_protocol.py",
+    "tests/test_interaction_evals.py",
+    "tests/test_interaction_observation_grader.py",
+    "tests/test_interaction_regression_gates.py"
+  ],
   "limitations": [
-    "The skill cannot provide cancellation, transactionality, locking, or idempotency when the runtime/target does not expose those primitives.",
-    "Behavioral activation remains instruction-driven; regression tests validate the contract text and deterministic contract validators, not every host runtime's skill router.",
-    "Irreversible/high-consequence actions are intentionally outside the autonomous envelope."
+    "The skill cannot provide cancellation, transactionality, locking, signatures, or idempotency when the runtime/target does not expose those primitives.",
+    "Approval binding is structurally hardened by a canonical digest captured outside the executor-editable contract; cryptographic authenticity still depends on the host runtime preserving that root approval receipt.",
+    "Deterministic semantic checks reject known contradictions but cannot prove arbitrary real-world claims such as whether true parallelism actually exists; root semantic preflight remains required.",
+    "Behavioral activation remains instruction-driven. The included observation grader can score captured contracts, but isolated stochastic runtime trials require host support.",
+    "Irreversible/high-consequence actions are intentionally outside the autonomous envelope.",
+    "External-write preauthorization is bound to a root-supplied reference by the bundled validators; authenticity still depends on the host preserving the root receipt rather than allowing executor-controlled substitution.",
+    "User-visible progress is enforceable only at boundaries where the host runtime allows the root to emit output; blocking tools/harnesses may prevent mid-operation messages, so the skill reports at the next available boundary and never claims unsupported live progress."
   ]
 }

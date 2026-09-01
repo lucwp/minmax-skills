@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.4",
+  "mode": "loop",
+  "contract_id": "golden-pt-BR-standard",
+  "contract_digest": "sha256:5a15119e0e5f85d421a0e628ec143f93eb827e1f32ead0a6404f705d0dab95c7",
+  "loop_name": "Clareza do Hero",
+  "human_language": "pt-BR",
+  "objective": "melhorar o hero sem alterar a oferta aprovada",
+  "terminal_deliverable": "hero final com evidência de verificação",
+  "completion_condition": "os critérios congelados passam sem hard failure",
+  "execution_plan": [
+    {
+      "name": "Congelar o ponto de partida",
+      "action": "registrar o estado atual e as evidências disponíveis",
+      "purpose": "estabelecer uma referência confiável antes de qualquer mudança",
+      "output": "baseline verificável",
+      "next": "usar apenas gaps demonstrados na próxima etapa",
+      "effect": "read_only",
+      "requires_human_approval": false
+    },
+    {
+      "name": "Testar a hipótese principal",
+      "action": "comparar o baseline com os critérios de decisão congelados",
+      "purpose": "identificar o principal gap que impede o PASS",
+      "output": "gap priorizado e evidência associada",
+      "next": "alterar somente o componente responsável pelo gap",
+      "effect": "read_only",
+      "requires_human_approval": false
+    },
+    {
+      "name": "Corrigir o gap verificado",
+      "action": "aplicar a menor mudança capaz de resolver o gap priorizado",
+      "purpose": "evitar mudanças de escopo ou otimizações sem evidência",
+      "output": "candidato revisado e diff",
+      "next": "verificar se a mudança produziu o efeito esperado",
+      "effect": "read_only",
+      "requires_human_approval": false
+    }
+  ],
+  "topology": "single_adaptive_loop",
+  "topology_rationale": "o mecanismo escolhido é suficiente para produzir progresso verificável sem complexidade desnecessária",
+  "complexity_gate": {
+    "simpler_topology_considered": "deterministic_prompt_chain",
+    "limitation": "a alternativa mais simples não captura o mecanismo dominante quando aplicável",
+    "benefit_types": [
+      "adaptive_action_selection"
+    ],
+    "expected_gain": "melhor aderência entre controle e progresso verificável",
+    "added_costs": [
+      "verification"
+    ],
+    "decision": "stay_simple"
+  },
+  "authoritative_inputs": [
+    "hero atual",
+    "oferta aprovada"
+  ],
+  "cycle_observation": "gap atual contra os critérios",
+  "cycle_action": "executar a menor ação útil permitida",
+  "progress": {
+    "evidence_definition": "mudança verificada ou movimento do verifier",
+    "allowed_evidence_types": [
+      "verified_artifact_change",
+      "verifier_movement"
+    ],
+    "fingerprint": "artifact hash + score",
+    "max_no_progress_cycles": 2
+  },
+  "verification": {
+    "method": "bounded_semantic_rubric",
+    "evidence": "rubrica congelada e comparação com baseline",
+    "layers": {
+      "action": "mudança teve o efeito esperado",
+      "cycle": "houve progresso material",
+      "terminal": "PASS global foi atingido"
+    },
+    "independent_terminal_verifier": "revisor independente contra a rubrica congelada",
+    "terminal_actor": "independent_reviewer",
+    "evidence_source": "independent_rubric",
+    "proxy_hardening": {
+      "attack_path": "reduzir o threshold ou reinterpretar a rubrica",
+      "protected_elements": [
+        "rubric",
+        "thresholds"
+      ],
+      "thresholds_frozen": true,
+      "executor_can_modify_verifier": false
+    }
+  },
+  "success_exit": "PASS global confirmado",
+  "failure_exit": "bloqueio irrecuperável dentro do escopo",
+  "budget_exit": "orçamento esgotado",
+  "budgets": {
+    "max_iterations": 4,
+    "max_retries": 1,
+    "max_no_progress_cycles": 2,
+    "max_wall_minutes": 20
+  },
+  "no_progress_rule": "encerrar após 2 ciclos sem progresso material",
+  "local_repair_triggers": [
+    "falha local do verifier"
+  ],
+  "material_replan_triggers": [
+    "mudança de objetivo, escopo ou boundary"
+  ],
+  "human_escalation_boundary": "replanejamento material",
+  "side_effect_class": "read_only",
+  "state": {
+    "mode": "ephemeral",
+    "store": null,
+    "version_marker": null,
+    "resume_strategy": null
+  },
+  "approved_boundaries": {
+    "scope": "hero apenas",
+    "side_effect": "read_only"
+  },
+  "domain_skills": [],
+  "tools": [],
+  "final_synthesis_requirement": "entregar resultado e evidências",
+  "approval": {
+    "status": "pending"
+  }
+}

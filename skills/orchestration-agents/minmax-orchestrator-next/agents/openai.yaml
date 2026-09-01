@@ -1,3 +1,13 @@
 interface:
-  display_name: "MinMax Orchestrator NEXT"
-  short_description: "Approval-gated planning, delegation, verification, and Loop Mode orchestration."
+  display_name: MinMax Orchestrator NEXT
+  short_description: Approval-gated planning, delegation, verification, and Loop Mode
+    orchestration.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -2,7 +2,7 @@
 
 ## Root Manager
 
-Root owns user intent, routing/topology, global Task Ledger, worker selection, approvals, conflict resolution, authoritative-state verification, and final synthesis.
+Root owns user intent, routing/topology, global Task Ledger, worker selection, approvals, user-visible execution communication, directional decision gates, conflict resolution, authoritative-state verification, and final synthesis. Root is the only public voice during managed execution; follow `user-interaction-protocol.md`.
 
 ## Planner
 
@@ -16,14 +16,15 @@ In Loop Mode, planner output is design-stage material only and cannot authorize 
 
 Worker receives one bounded outcome, exact ownership surface, prerequisites, relevant context refs, allowed tools/skills, completion test, runtime budget, and return schema.
 
-Worker may adapt locally but may not redesign global topology or recursively invoke the orchestrator/Loop Mode.
+Worker may adapt locally but may not redesign global topology, recursively invoke the orchestrator/Loop Mode, or independently address the user. If a genuine user-owned directional fork appears, return it to root as `decision_request`.
 
 Return:
 - `status: PASS | BLOCKED | PARTIAL`;
 - outcome;
 - evidence/change;
 - completion-test result;
-- concise blocker/residual risk.
+- concise blocker/residual risk;
+- optional `decision_request`: decision needed, viable options/ambiguity, relevant evidence/trade-off, and whether the answer appears to remain inside current approved boundaries.
 
 ## Verifier
 

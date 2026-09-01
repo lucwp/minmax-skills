@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.4",
+  "mode": "loop",
+  "contract_id": "golden-en-complex",
+  "contract_digest": "sha256:5d7a298f95a891e802c341cebf8a577e7a49f8d9ee7d14c7a43facb96e5ecd15",
+  "loop_name": "Hero Clarity",
+  "human_language": "en",
+  "objective": "improve the hero without changing the approved offer",
+  "terminal_deliverable": "final hero with verification evidence",
+  "completion_condition": "the frozen criteria pass with no hard failure",
+  "execution_plan": [
+    {
+      "name": "Freeze the baseline",
+      "action": "capture the current state and available evidence",
+      "purpose": "establish a reliable reference before changing anything",
+      "output": "a verifiable baseline",
+      "next": "use only demonstrated gaps in the next step",
+      "effect": "read_only",
+      "requires_human_approval": false
+    },
+    {
+      "name": "Test the main hypothesis",
+      "action": "compare the baseline with the frozen decision criteria",
+      "purpose": "identify the highest-value gap blocking PASS",
+      "output": "a prioritized gap with supporting evidence",
+      "next": "change only the component responsible for that gap",
+      "effect": "read_only",
+      "requires_human_approval": false
+    },
+    {
+      "name": "Repair the verified gap",
+      "action": "apply the smallest change that can resolve the prioritized gap",
+      "purpose": "avoid scope drift or unsupported optimization",
+      "output": "a revised candidate and diff",
+      "next": "verify whether the change had the intended effect",
+      "effect": "read_only",
+      "requires_human_approval": false
+    },
+    {
+      "name": "Verify the change",
+      "action": "run the independent verifier and compare against the baseline",
+      "purpose": "confirm material progress without weakening the criteria",
+      "output": "PASS evidence or the next verifiable gap",
+      "next": "stop on PASS or continue within budget",
+      "effect": "read_only",
+      "requires_human_approval": false
+    },
+    {
+      "name": "Confirm terminal completion",
+      "action": "run the full terminal verification",
+      "purpose": "prove that the deliverable satisfies the global objective",
+      "output": "terminal result and final evidence",
+      "next": "synthesize the result and stop",
+      "effect": "read_only",
+      "requires_human_approval": false
+    }
+  ],
+  "topology": "evaluator_optimizer",
+  "topology_rationale": "the selected mechanism is sufficient to create verifiable progress without unnecessary complexity",
+  "complexity_gate": {
+    "simpler_topology_considered": "single_adaptive_loop",
+    "limitation": "the simpler option does not capture the dominant mechanism when escalation is needed",
+    "benefit_types": [
+      "iterative_critique_gain"
+    ],
+    "expected_gain": "better fit between control flow and verifiable progress",
+    "added_costs": [
+      "verification"
+    ],
+    "decision": "escalate"
+  },
+  "authoritative_inputs": [
+    "current hero",
+    "approved offer"
+  ],
+  "cycle_observation": "current gap against the criteria",
+  "cycle_action": "perform the smallest useful approved action",
+  "progress": {
+    "evidence_definition": "verified change or verifier movement",
+    "allowed_evidence_types": [
+      "verified_artifact_change",
+      "verifier_movement"
+    ],
+    "fingerprint": "artifact hash + score",
+    "max_no_progress_cycles": 2
+  },
+  "verification": {
+    "method": "bounded_semantic_rubric",
+    "evidence": "frozen rubric and baseline comparison",
+    "layers": {
+      "action": "change had the intended effect",
+      "cycle": "material progress occurred",
+      "terminal": "global PASS was reached"
+    },
+    "independent_terminal_verifier": "independent reviewer against the frozen rubric",
+    "terminal_actor": "independent_reviewer",
+    "evidence_source": "independent_rubric",
+    "proxy_hardening": {
+      "attack_path": "lower the threshold or reinterpret the rubric",
+      "protected_elements": [
+        "rubric",
+        "thresholds"
+      ],
+      "thresholds_frozen": true,
+      "executor_can_modify_verifier": false
+    }
+  },
+  "success_exit": "global PASS confirmed",
+  "failure_exit": "unrecoverable blocker inside scope",
+  "budget_exit": "budget exhausted",
+  "budgets": {
+    "max_iterations": 4,
+    "max_retries": 1,
+    "max_no_progress_cycles": 2,
+    "max_wall_minutes": 20
+  },
+  "no_progress_rule": "stop after 2 cycles without material progress",
+  "local_repair_triggers": [
+    "local verifier failure"
+  ],
+  "material_replan_triggers": [
+    "objective, scope, or boundary change"
+  ],
+  "human_escalation_boundary": "material replan",
+  "side_effect_class": "read_only",
+  "state": {
+    "mode": "ephemeral",
+    "store": null,
+    "version_marker": null,
+    "resume_strategy": null
+  },
+  "approved_boundaries": {
+    "scope": "hero only",
+    "side_effect": "read_only"
+  },
+  "domain_skills": [],
+  "tools": [],
+  "final_synthesis_requirement": "return result and evidence",
+  "approval": {
+    "status": "pending"
+  }
+}
