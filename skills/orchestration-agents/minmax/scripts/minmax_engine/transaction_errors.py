@@ -1,2 +1,0 @@
-class TransactionError(RuntimeError):
-    pass
